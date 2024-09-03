@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(100deg, #000000, #00000020), url('../img/pexels-cottonbro-4488660.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-section {
+    width: 50%;
+    color: white;
+    padding: 40px;
+}
+
+.info-section h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.info-section p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.wrapper {
+    position: relative;
+    width: 400px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: 40px;
+    overflow: hidden;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease-in-out;
+}
+
+h2 {
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    position: relative;
+    margin: 20px 0;
+    border-bottom: 2px solid #ffffff;
+    width: 100%;
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #ffffff;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.input-group input {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 0 5px;
+    background: transparent;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: -5px;
+    color: #a3d2ca;
+}
+
+.input-group input:focus {
+    border-color: #a3d2ca;
+    box-shadow: 0 4px 8px rgba(163, 210, 202, 0.2);
+}
+
+.checkbox-group {
+    margin: 15px 0;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+    accent-color: #5f6f52;
+}
+
+button {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #334727;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #5f6f52;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(94, 170, 168, 0.2);
+}
+
+.login-link {
+    font-size: 14px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.login-link p {
+    color: #ffffff;
+}
+
+.login-link p a {
+    color: #5f6f52;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link p a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(94, 170, 168, 0.2);
+}
