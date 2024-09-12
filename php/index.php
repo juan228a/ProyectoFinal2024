@@ -1,3 +1,14 @@
+<?php
+// Iniciar la sesión
+session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    $username = "Log In";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,17 +31,17 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../css/owl.carousel.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="../css/animate.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -62,7 +73,10 @@
 						<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
 					</li> -->
 					<li class="nav-item">
-						<a class="nav-link" href="./html/logIn.html" >Login/SignUp</a>
+						<a class="nav-link" href="../html/login.html" ><?php echo $username?></a>
+					</li>
+                    <li class="nav-item">
+						<a class="nav-link" href="cerrarsesion.php">Cerrar session</a>
 					</li>
 				</ul>
 				<div class="social-icons-header">
@@ -97,10 +111,10 @@
 
 			<div class="owl-carousel owl-theme">
 
-				<div class="item"><img src="img/Historia de Instagram Anuncio de Servicio Técnico de Aire Acondicionado Moderno Azul(1).png" alt="sddddsd"></div>
-				<div class="item"><img src="img/smartphone-2.png" alt=""></div>
-				<div class="item"><img src="img/iphone.png" alt=""></div>
-				<div class="item"><img src="img/smartphone-2.png" alt=""></div>
+				<div class="item"><img src="../img/Historia de Instagram Anuncio de Servicio Técnico de Aire Acondicionado Moderno Azul(1).png" alt="sddddsd"></div>
+				<div class="item"><img src="../img/smartphone-2.png" alt=""></div>
+				<div class="item"><img src="../img/iphone.png" alt=""></div>
+				<div class="item"><img src="../img/smartphone-2.png" alt=""></div>
 
 
 			</div>
@@ -121,7 +135,7 @@
 
 				<div class="col-sm-6 in-order-1 wow animated fadeInLeft" data-wow-delay="0.22s">
 					<div class="col-sm-image-container">
-						<img class="img-float-left" src="img/reserva.png" alt="smartphone-1">
+						<img class="img-float-left" src="../img/reserva.png" alt="smartphone-1">
 					</div>
 				</div>
 
@@ -136,12 +150,12 @@
 				</div>
 
 				<div class="col-sm-6 in-order-4 wow animated fadeInRight" data-wow-delay="0.22s">
-					<img class="img-float-right" src="img/punto-de-encuentro.png" alt="smartphone-2">
+					<img class="img-float-right" src="../img/punto-de-encuentro.png" alt="smartphone-2">
 				</div>
 
 				<div class="col-sm-6 in-order-5 wow animated fadeInLeft" data-wow-delay="0.22s">
 					<div class="col-sm-image-container">
-						<img class="img-float-left" src="img/devolver.png" alt="smartphone-3">
+						<img class="img-float-left" src="../img/devolver.png" alt="smartphone-3">
 					</div>
 				</div>
 				<div class="col-sm-6 in-order-6 sm-6-content wow animated fadeInRight" data-wow-delay="0.22s">
