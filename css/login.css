@@ -29,9 +29,9 @@ body {
 }
 
 .info-section {
-  width: 50%;
+  width: 40%;
   color: white;
-  padding: 40px;
+  padding: 30px;
   text-align: center; /* Centra el texto para pantallas pequeñas */
 }
 
@@ -44,6 +44,7 @@ body {
 .info-section p {
   font-size: 18px;
   line-height: 1.6;
+  text-align: justify;
 }
 
 .wrapper {
@@ -107,7 +108,11 @@ h2 {
   top: -5px;
   color: #a3d2ca;
 }
+a{
 
+  color: white;
+  text-decoration: none;
+}
 .input-group input:focus {
   border-color: #a3d2ca;
   box-shadow: 0 4px 8px rgba(163, 210, 202, 0.2);
@@ -178,8 +183,9 @@ button:hover {
 
   .info-section {
     width: 100%;
-    text-align: center; /* Asegura que el texto esté centrado en pantallas pequeñas */
+    text-align: justify; /* Asegura que el texto esté centrado en pantallas pequeñas */
     padding: 20px;
+    
   }
 
   .wrapper {
