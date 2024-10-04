@@ -3,7 +3,7 @@
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['email'])) {
     $username = $_SESSION['username'];
 } else {
     $username = "Log In";
@@ -31,11 +31,16 @@ if (isset($_SESSION['username'])) {
 	<meta name="twitter:card" content="" />
 
 	<!-- Bootstrap  -->
+<<<<<<< HEAD
     <link rel="stylesheet" href="../css/bootstrap.css">
     <!-- dropdown style  -->
 	<link rel="stylesheet" href="../css/dropdown.css">
     <!-- Theme style  -->
 	<link rel="stylesheet" href="../css/style.css">
+=======
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/dropdown.css">
+>>>>>>> d07a5da7f441f880bc64aa9ce2121c1dc0488aa1
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="../css/owl.carousel.css">
 	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
@@ -44,6 +49,11 @@ if (isset($_SESSION['username'])) {
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+<<<<<<< HEAD
+=======
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="../css/style.css">
+>>>>>>> d07a5da7f441f880bc64aa9ce2121c1dc0488aa1
 	
 
 </head>
@@ -70,8 +80,9 @@ if (isset($_SESSION['username'])) {
 						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../html/Catalogo.html" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
+						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta</a>
 					</li>
+<<<<<<< HEAD
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
 					</li> -->
@@ -79,14 +90,24 @@ if (isset($_SESSION['username'])) {
     <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
     <ul class="dropdown-menu">
         <li><a href="#">Editar Perfil</a></li>
+=======
+
+					<li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
+    <ul class="dropdown-menu">
+        <li><a href="./html/userPerfil.html">Editar Perfil</a></li>
+>>>>>>> d07a5da7f441f880bc64aa9ce2121c1dc0488aa1
         <li><a href="#">Mis Alquileres</a></li>
         <li><a href="#">Mis Articulos</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
+<<<<<<< HEAD
 
 
 				</ul>
+=======
+>>>>>>> d07a5da7f441f880bc64aa9ce2121c1dc0488aa1
 				<div class="social-icons-header">
 					<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
 					<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
@@ -99,6 +120,15 @@ if (isset($_SESSION['username'])) {
     const dropdownMenu = document.querySelector('.dropdown-menu');
     const isVisible = dropdownMenu.style.display === 'block';
 
+<<<<<<< HEAD
+=======
+
+		<script>
+        function toggleDropdown() {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const isVisible = dropdownMenu.style.display === 'block';
+
+>>>>>>> d07a5da7f441f880bc64aa9ce2121c1dc0488aa1
     // Oculta todos los menús desplegables
     document.querySelectorAll('.dropdown-menu').forEach(menu => {
         menu.style.display = 'none';
@@ -120,11 +150,20 @@ document.addEventListener('click', function(event) {
     }
 });
 </script>
+<<<<<<< HEAD
 		<div class="container fh5co-hero-inner">
 			<h1 class="animated fadeIn wow" data-wow-delay="0.4s">Herramientas a tu Alcance: Alquila Fácilmente y Sin Complicaciones</h1>
 			<p class="animated fadeIn wow" data-wow-delay="0.67s">¡Haz realidad tus proyectos con las herramientas adecuadas! </p>
 			<button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$('#fh5co-download').goTo();return false;">Alquilar</button>
 			<a href="../html/Catalogo.html"><button class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s" onclick="$('#fh5co-features').goTo();return false;">Catalogo</button></a>
+=======
+
+		<div class="container fh5co-hero-inner">
+			<h1 class="animated fadeIn wow" data-wow-delay="0.4s">Herramientas a tu Alcance: Alquila Fácilmente y Sin Complicaciones</h1>
+			<p class="animated fadeIn wow" data-wow-delay="0.67s">¡Haz realidad tus proyectos con las herramientas adecuadas! </p>
+			<a href="Catalogo.php"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$().goTo();return false;">Alquilar</button></a>
+			<button class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s" onclick="$('#fh5co-features').goTo();return false;">Catalogo</button>
+>>>>>>> d07a5da7f441f880bc64aa9ce2121c1dc0488aa1
 			
 		</div>
 
