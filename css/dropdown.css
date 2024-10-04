@@ -1,0 +1,39 @@
+/* custom-dropdown.css */
+
+/* Asegúrate de que el dropdown-menu tenga fondo transparente */
+.nav-item .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: transparent !important; /* Fondo transparente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Sombra para definir los bordes */
+    padding: 0;
+    list-style: none;
+    margin: 0;
+    z-index: 1000;
+    border: none; /* Elimina cualquier borde */
+}
+
+/* Borde inferior sutil para los elementos del menú */
+.nav-item .dropdown-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important; /* Borde sutil */
+}
+
+.nav-item .dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+/* Opciones del menú con fondo transparente */
+.nav-item .dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333;
+    text-decoration: none;
+    background-color: transparent !important; /* Fondo transparente */
+}
+
+/* Efecto hover para opciones del menú */
+.nav-item .dropdown-menu a:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important; /* Fondo ligeramente oscuro en hover */
+}

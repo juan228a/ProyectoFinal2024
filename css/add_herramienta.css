@@ -1,0 +1,130 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('../img/pexels-cottonbro-4488660.jpg') no-repeat center center fixed; /* Añadir imagen de fondo */
+    background-size: cover; /* Ajustar la imagen al tamaño de la ventana */
+    background-color: #f9f9f9; /* Mantener el color de fondo */
+    margin: 0;
+    padding: 0;
+    color: black; /* Color de texto por defecto */
+    text-shadow: 1px 1px 2px white; /* Borde blanco suave alrededor del texto */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo con transparencia */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black; /* Asegura que el título sea negro */
+    text-shadow: 1px 1px 2px white; /* Borde blanco para el título */
+}
+
+.input-group {
+    margin-bottom: 30px; /* Aumentar el espacio entre los campos */
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px; /* Pequeño margen entre la etiqueta y el campo */
+    color: black; /* Color del texto negro */
+    font-size: 14px;
+    text-shadow: 1px 1px 2px white; /* Borde blanco suave */
+}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="file"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6f61;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #e65c50;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group-inline .input-group {
+    flex: 1;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px auto;
+        padding: 15px;
+        max-width: 95%; /* Reduce el ancho máximo en pantallas pequeñas */
+    }
+
+    .form-group-inline {
+        flex-direction: column; /* Hacer que los elementos se apilen verticalmente */
+        gap: 10px; /* Reducir el espacio entre los campos */
+    }
+
+    .input-group {
+        margin-bottom: 20px; /* Reducir el espacio entre los campos */
+    }
+
+    input[type="text"], input[type="email"], input[type="number"], input[type="file"], select, textarea {
+        font-size: 14px; /* Disminuir el tamaño de fuente en pantallas más pequeñas */
+        padding: 8px; /* Ajustar el padding en pantallas más pequeñas */
+    }
+
+    .btn-submit {
+        padding: 10px; /* Ajustar el padding del botón en pantallas pequeñas */
+        font-size: 14px;
+    }
+}
+
+/* Media Queries para dispositivos aún más pequeños */
+@media (max-width: 480px) {
+    .container {
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    .form-group-inline {
+        gap: 5px;
+    }
+
+    input[type="text"], input[type="email"], input[type="number"], input[type="file"], select, textarea {
+        font-size: 13px;
+        padding: 6px;
+    }
+
+    .btn-submit {
+        padding: 8px;
+        font-size: 13px;
+    }
+}

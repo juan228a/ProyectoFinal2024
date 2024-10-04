@@ -3,7 +3,7 @@
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['email'])) {
     $username = $_SESSION['username'];
 } else {
     $username = "Log In";
@@ -32,6 +32,7 @@ if (isset($_SESSION['username'])) {
 
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/dropdown.css">
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="../css/owl.carousel.css">
 	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
@@ -42,6 +43,7 @@ if (isset($_SESSION['username'])) {
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="../css/style.css">
+	
 
 </head>
 <body>
@@ -69,19 +71,16 @@ if (isset($_SESSION['username'])) {
 					<li class="nav-item">
 						<a class="nav-link" href="#" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
 					</li>
-					<!-- <li class="nav-item">
-						<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
-					</li> -->
-					<li class="nav-item">
-						<a class="nav-link" href="../html/login.html" ><?php echo $username?></a>
-					</li>
-                    <li class="nav-item">
-						<a class="nav-link" href="cerrarsesion.php">Cerrar session</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Subir Articulo</a>
-					</li>
-				</ul>
+
+					<li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
+    <ul class="dropdown-menu">
+        <li><a href="./html/userPerfil.html">Editar Perfil</a></li>
+        <li><a href="#">Mis Alquileres</a></li>
+        <li><a href="#">Mis Articulos</a></li>
+        <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
+    </ul>
+</li>
 				<div class="social-icons-header">
 					<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
 					<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
@@ -90,10 +89,38 @@ if (isset($_SESSION['username'])) {
 			</div>
 		</nav>
 
+
+		<script>
+        function toggleDropdown() {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const isVisible = dropdownMenu.style.display === 'block';
+
+    // Oculta todos los menús desplegables
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+
+    // Si el menú no estaba visible, lo mostramos
+    if (!isVisible) {
+        dropdownMenu.style.display = 'block';
+    }
+}
+
+// Cierra el dropdown si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+});
+</script>
+
 		<div class="container fh5co-hero-inner">
 			<h1 class="animated fadeIn wow" data-wow-delay="0.4s">Herramientas a tu Alcance: Alquila Fácilmente y Sin Complicaciones</h1>
 			<p class="animated fadeIn wow" data-wow-delay="0.67s">¡Haz realidad tus proyectos con las herramientas adecuadas! </p>
-			<button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$('#fh5co-download').goTo();return false;">Alquilar</button>
+			<a href="Catalogo.php"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$().goTo();return false;">Alquilar</button></a>
 			<button class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s" onclick="$('#fh5co-features').goTo();return false;">Catalogo</button>
 			
 		</div>
