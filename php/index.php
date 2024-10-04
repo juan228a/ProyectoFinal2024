@@ -31,7 +31,11 @@ if (isset($_SESSION['username'])) {
 	<meta name="twitter:card" content="" />
 
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <!-- dropdown style  -->
+	<link rel="stylesheet" href="../css/dropdown.css">
+    <!-- Theme style  -->
+	<link rel="stylesheet" href="../css/style.css">
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="../css/owl.carousel.css">
 	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
@@ -40,8 +44,7 @@ if (isset($_SESSION['username'])) {
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/style.css">
+	
 
 </head>
 <body>
@@ -67,20 +70,22 @@ if (isset($_SESSION['username'])) {
 						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
+						<a class="nav-link" href="../html/Catalogo.html" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
 					</li>
 					<!-- <li class="nav-item">
 						<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
 					</li> -->
-					<li class="nav-item">
-						<a class="nav-link" href="../html/login.html" ><?php echo $username?></a>
-					</li>
-                    <li class="nav-item">
-						<a class="nav-link" href="cerrarsesion.php">Cerrar session</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Subir Articulo</a>
-					</li>
+					<li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
+    <ul class="dropdown-menu">
+        <li><a href="#">Editar Perfil</a></li>
+        <li><a href="#">Mis Alquileres</a></li>
+        <li><a href="#">Mis Articulos</a></li>
+        <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
+    </ul>
+</li>
+
+
 				</ul>
 				<div class="social-icons-header">
 					<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
@@ -89,12 +94,37 @@ if (isset($_SESSION['username'])) {
 				</div>
 			</div>
 		</nav>
+        <script>
+        function toggleDropdown() {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const isVisible = dropdownMenu.style.display === 'block';
 
+    // Oculta todos los menús desplegables
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+
+    // Si el menú no estaba visible, lo mostramos
+    if (!isVisible) {
+        dropdownMenu.style.display = 'block';
+    }
+}
+
+// Cierra el dropdown si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+});
+</script>
 		<div class="container fh5co-hero-inner">
 			<h1 class="animated fadeIn wow" data-wow-delay="0.4s">Herramientas a tu Alcance: Alquila Fácilmente y Sin Complicaciones</h1>
 			<p class="animated fadeIn wow" data-wow-delay="0.67s">¡Haz realidad tus proyectos con las herramientas adecuadas! </p>
 			<button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$('#fh5co-download').goTo();return false;">Alquilar</button>
-			<button class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s" onclick="$('#fh5co-features').goTo();return false;">Catalogo</button>
+			<a href="../html/Catalogo.html"><button class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s" onclick="$('#fh5co-features').goTo();return false;">Catalogo</button></a>
 			
 		</div>
 
@@ -139,6 +169,8 @@ if (isset($_SESSION['username'])) {
 				<div class="col-sm-6 in-order-1 wow animated fadeInLeft" data-wow-delay="0.22s">
 					<div class="col-sm-image-container">
 						<img class="img-float-left" src="../img/reserva.png" alt="smartphone-1">
+						<span class="span-new">Nuevo</span>
+						
 					</div>
 				</div>
 
@@ -189,7 +221,7 @@ if (isset($_SESSION['username'])) {
 						<h1>¿Aún tienes dudas?</h1>
 						<p>Contacta con nosotros y te ayudaremos encantados.</p>
 						<br>
-						<button class="btn btn-md features-btn-first animated fadeInLeft wow"> <a class="boton_vinculo" href="./html/contacto.html">Contacto</a></button>
+						<button class="btn btn-md features-btn-first animated fadeInLeft wow"> <a class="boton_vinculo" href="">Contacto</a></button>
 					</div>
 				</div>
 			</div>
@@ -230,7 +262,7 @@ if (isset($_SESSION['username'])) {
 
 			<span class="border-bottom-footer"></span>
 
-			<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
+			<p class="copyright">&copy; 2024 App. All rights reserved.</p>
 
 		</div>
 	</footer>
