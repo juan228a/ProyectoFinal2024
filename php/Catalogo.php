@@ -76,7 +76,7 @@ if (isset($_SESSION['username'])) {
 							<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
 						</li> 
 						<li class="nav-item">
-							<a class="nav-link" href="../html/logIn.html" >Login/SignUp</a>
+							<a class="nav-link" href="../html/logIn.html" ><?php echo $username; ?></a>
 						</li>
 					</ul>
 					<div class="social-icons-header">
@@ -197,6 +197,7 @@ if (isset($_SESSION['username'])) {
 					<br>
 
 					<div class="reservation-form">
+					<form action="ConfirmacionAlquiler.php" method="POST">
 						<br>
 						<br>
 
@@ -214,6 +215,7 @@ if (isset($_SESSION['username'])) {
 						
 						<!-- Mensaje de confirmación -->
 						<p id="confirmation-message"></p>
+						</form>
 					</div>
 					<br>
 					<br>
