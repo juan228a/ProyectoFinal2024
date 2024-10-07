@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800");
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Montserrat", "sans-serif";
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.download-btn-first {
+  background: #f7f7f7;
+}
+
+.download-btn-first:hover {
+  background: #234197;
+  color: #fff !important;
+}
+
+.features-btn-first {
+  font-weight: 700;
+}
+
+.features-btn-first:hover {
+  background: #f7f7f7 !important;
+  color: #234197 !important;
+}
+
+
+
+#fh5co-hero-wrapper {
+  height: 200px;
+  width: 100%;
+  background: url("../img/pexels-cottonbro-4488660.jpg") no-repeat center;
+  border-radius: 0 0 50% 50% / 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Espacio entre elementos */
+}
+
+.main-navbar-nav .navbar-brand {
+  font-size: 38px;
+  letter-spacing: 4px;
+  position: relative;
+  top: -5px;
+  font-weight: 500;
+ 
+}
+
+.main-navbar-nav {
+  color: #fff !important;
+ 
+}
+.main-navbar-nav li {
+  color: #fff;
+  opacity: .7;
+}
+.main-navbar-nav .navbar-nav .nav-item a:hover {
+  color: #234197 !important;
+  -webkit-transition: all .33s ease;
+  -moz-transition: all .33s ease;
+  -o-transition: all .33s ease;
+  -ms-transition: all .33s ease;
+  transition: all .33s ease;
+}
+.main-navbar-nav .active {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+.main-navbar-nav a {
+  color: #fff !important;
+}
+.main-navbar-nav .nav-link {
+  opacity: 1 !important;
+  margin: 0 35px;
+  font-size: 14.5px;
+  font-weight: 500;
+}
+
+.social-icons-header i {
+  margin: 15px;
+  font-size: 20px;
+}
+
+.social-icons-header a:hover i {
+  opacity: .6;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+
+
+
+
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+		}
+
+		.catalogo {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: stretch;
+			margin: 20px 50px;
+			gap: 30px; /* Aumentamos el espacio entre los elementos */
+		}
+
+		.infobox {
+			background-color: white;
+			border: 1px solid #ddd;
+			border-radius: 8px;
+			padding: 20px;
+			margin: 10px;
+			width: 280px;
+			box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+			text-align: center;
+			transition: transform 0.3s ease; /* Añadimos una pequeña animación */
+		}
+
+		.infobox:hover {
+			transform: translateY(-5px); /* Efecto hover para levantar la caja ligeramente */
+		}
+
+		.infobox img {
+			max-width: 100%;
+			height: auto;
+			border-bottom: 1px solid #ddd;
+			padding-bottom: 10px;
+			margin-bottom: 15px; /* Más espacio debajo de la imagen */
+		}
+
+		.infobox h2 {
+			font-size: 1.3em;
+			margin: 15px 0;
+		}
+
+		.infobox p {
+			font-size: 1em;
+			color: #555;
+			margin: 10px 0;
+		}
+
+		.infobox .precio {
+			font-size: 1.2em;
+			font-weight: bold;
+			color: #e74c3c;
+			margin: 10px 0;
+		}
+
+		.infobox button {
+			background-color: #3498db;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 1em;
+			transition: background-color 0.3s ease;
+			margin-top: 10px;
+		}
+
+		.infobox button:hover {
+			background-color: #2980b9;
+		}
+
+
+
+
+
+        /* Estilo para el título del catálogo */
+		h1 {
+			margin-top: 30px;
+			margin-bottom: 40px;
+			font-size: 2.0em;
+			text-align: center;
+		}
+
+
+
+
+
+
+
+
+       
+/* Estilo del botón "+" */
+.add-btn {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.openModalBtn {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  background-color: #f0f0f0; /* Fondo opcional */
+}
+
+#openModalBtn:hover {
+  background-color: #2980b9;
+}
+
+/* Estilo del modal */
+.modal {
+    display: flex; /* Ocultar el modal por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fefefe(0, 0, 0, 0.5);
+    overflow: auto;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+}
+
+/* Contenido del modal */
+.modal-content {
+
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #fefefe;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+   
+}
+
+/* Botón de cierre */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .footer-outer {
+            width: 100%;
+            padding: 50px;
+            height: 150px;
+            background: #2e3149;
+            overflow: hidden;
+          }
+          .footer-outer .footer-inner {
+            width: 100%;
+            height: inherit;
+          }
+          .footer-outer .social-icons-footer i {
+            margin: 15px;
+            font-size: 20px;
+          }
+          .footer-outer .social-icons-footer a:hover i {
+            opacity: .6;
+            -webkit-transition: all .2s ease;
+            -moz-transition: all .2s ease;
+            -o-transition: all .2s ease;
+            -ms-transition: all .2s ease;
+            transition: all .2s ease;
+          }
+          .footer-outer .footer-three-grid {
+            width: 1140px;
+            margin: 0 auto;
+            height: 50px;
+            text-align: center;
+          }
+          .footer-outer .column-1-3 {
+            width: 20%;
+            float: left;
+            height: 50px;
+          }
+          .footer-outer .column-1-3 h1 {
+            font-size: 38px;
+            letter-spacing: 3px;
+            position: relative;
+            top: -5px;
+            font-weight: 600;
+            color: #fff;
+          }
+          .footer-outer .column-2-3 {
+            width: 60%;
+            float: left;
+            height: 50px;
+          }
+          .footer-outer .column-3-3 {
+            width: 20%;
+            float: left;
+            height: 20px;
+          }
+          .footer-outer .column-3-3 a {
+            color: #b5b5c8;
+          }
+          .footer-outer .column-3-3 .social-icons-header a:hover {
+            color: #fff;
+            opacity: 1;
+            -webkit-transition: color .2s ease;
+            -o-transition: color .2s ease;
+            transition: color .2s ease;
+          }
+          .footer-outer .footer-nav ul {
+            list-style: none;
+            text-align: center;
+          }
+          .footer-outer .footer-nav ul li {
+            display: inline-block;
+            line-height: 50px;
+            color: #b5b5c8;
+            margin: 0 30px;
+            font-size: 14px;
+          }
+          .footer-outer .footer-nav ul li:hover {
+            color: #fff;
+            -webkit-transition: color .2s ease-in-out;
+            -o-transition: color .2s ease-in-out;
+            transition: color .2s ease-in-out;
+          }
+          .footer-outer .footer-nav ul .active {
+            color: #fff;
+          }
+          .footer-outer .footer-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+          }
+          .footer-outer .border-bottom-footer {
+            height: 1px;
+            width: 60%;
+            margin: 0 auto;
+            border: 1px solid #434769;
+            display: block;
+            margin-top: 50px;
+          }
+          .footer-outer .copyright {
+            color: #565b87;
+            text-align: center;
+            font-size: 13px;
+            padding: 40px 0;
+          }
+          
+          .google-play-btn {
+            margin-left: 10px;
+          }
+          
