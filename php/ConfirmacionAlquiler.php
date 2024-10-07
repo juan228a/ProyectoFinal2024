@@ -1,19 +1,19 @@
 <?php
-// Iniciar la sesión
+// Iniciar la sesión para almacenar los datos temporalmente
 session_start();
 
 // Incluir archivo de conexión
 include 'conexion.php';
 
 // Inicializar variables para almacenar los datos del usuario
-$nombre = $apellido = $email = $password = $telefono = $provincia = $ciudad  = $descripcion = "";
+$nombre = $apellido = $email = $password = $telefono = $provincia = $ciudad = $descripcion = "";
 
 // Verificar si el usuario ha iniciado sesión
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 
     // Recuperar los datos del usuario de la base de datos
-    $sql = "SELECT nombre, apellido, email, password ,  telefono, provincia, ciudad,  descripcion FROM usuarios WHERE usuario = ?";
+    $sql = "SELECT nombre, apellido, email, password , telefono, provincia, ciudad, descripcion FROM usuarios WHERE usuario = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -26,6 +26,21 @@ if (isset($_SESSION['username'])) {
     exit();
 }
 
+// Capturar los datos del formulario de fecha y hora
+if (isset($_POST['reservation-date']) && isset($_POST['reservation-time'])) {
+    // Guardar los valores de fecha y hora en variables
+    $date = $_POST['reservation-date'];
+    $time = $_POST['reservation-time'];
+    
+    // Guardar los datos en la sesión
+    $_SESSION['reservation_date'] = $date;
+    $_SESSION['reservation_time'] = $time;
+} else {
+    // Si no se han enviado datos, mostrar mensaje de error
+    echo "No se ha seleccionado una fecha y hora.";
+    exit();
+}
+
 $conexion->close();
 ?>
 
@@ -35,169 +50,76 @@ $conexion->close();
 	<meta charset="UTF-8">
 	<title>Prest-AR</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FreeHTML5.co" />
-
-	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
-
-	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
-	<!-- Theme style  -->
 	<link rel="stylesheet" href="../css/ConfirmacionAlquiler.css">
-
 </head>
 <body>
 
-
 <div id="page-wrap">
-
-
-	<!-- ==========================================================================================================
-													   HERO
-		 ========================================================================================================== -->
 
 	<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
 			<a class="navbar-brand" href="">Prest-AR</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="../index.html">Inicio <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../ProyectoFinalGithub/ProyectoFinalGithub/html/ConfirmacionAlquiler.html" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
-					</li>
-					
-					<li class="nav-item">
-						<a class="nav-link" href="../html/logIn.html" >Login/SignUp</a>
-					</li>
-				</ul>
-				<div class="social-icons-header">
-					<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-					<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-					<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-				</div>
-			</div>
 		</nav>
     </div>
 
-
-
-	<br>
-	<br>
+	<br><br>
 
 	<div class="infobox">
         <h3 class="Complet">Completar Alquiler</h3>
 		<br>
-		<h5 class="Complet">(Mediante estos datos, el dueño se comunicara con usted para confirmar su reserva!)</h5>
+		<h5 class="Complet">(Mediante estos datos, el dueño se comunicará con usted para confirmar su reserva!)</h5>
 		<br>
-        <form>
+        <form action="confirmacionCarrito.php" method="POST">
             <label for="nombre">Nombre:<b></b></label>
-            <input type="text" id="nombre" name= "nombre" required value="<?php echo $nombre?>" readonly required >
+            <input type="text" id="nombre" name="nombre" required value="<?php echo $nombre?>" readonly>
 
-			<label for="nombre">Apellido:<b></b></label>
-            <input type="text" id="apellido" name= "apellido" required value="<?php echo $apellido?>" readonly required >
-
-
+			<label for="apellido">Apellido:<b></b></label>
+            <input type="text" id="apellido" name="apellido" required value="<?php echo $apellido?>" readonly>
 
             <label for="email"><b>Email:</b></label>
-            <input type="email" id="email" name="email" required value="<?php echo $email?>" readonly required>
+            <input type="email" id="email" name="email" required value="<?php echo $email?>" readonly>
 
-            <label for="telefono"><b>Telefono:</b></label>
+            <label for="telefono"><b>Teléfono:</b></label>
             <input type="tel" id="telefono" name="telefono" required>
 
-			<label for="Direccion"><b>Direccion Hogar:</b></label>
-            <input type="text" id="direccion" name="Direccion" required>
+			<label for="direccion"><b>Dirección Hogar:</b></label>
+            <input type="text" id="direccion" name="direccion" required>
 
-			<label for="Horas a alquilar"><b>Horas a alquilar:</b></label>
-            <input type="number" id="Horas" name="Horas" required>
+			<label for="horas"><b>Horas a alquilar:</b></label>
+            <input type="number" id="horas" name="horas" required>
 
-			<label for="Experiencia"><b>Experiencia con la herramienta:</b></label>
-            <input type="text" id="Experiencia" name="Experiencia" required>
+			<label for="experiencia"><b>Experiencia con la herramienta:</b></label>
+            <input type="text" id="experiencia" name="experiencia" required>
 
-			<label for="Informacion extra"><b>Informacion que desee añadir:</b></label>
-            <input type="text" id="Informacion" name="Informacion" required>
-			<br>
-			<br>
+			<label for="informacion"><b>Información extra que desee añadir:</b></label>
+            <input type="text" id="informacion" name="informacion" required>
 
-			<h3><b>Su reserva quedara registrada a confirmar por el Dueño de la herramienta para el dia:" `${date}`  " y horas:"  "</b></h3>
+			<!-- Campo para la selección de la fecha -->
+			<label for="fecha"><b>Seleccionar fecha:</b></label>
+            <input type="date" id="reservation-date" name="reservation-date" required>
+
+			<!-- Campo para la selección de la hora -->
+			<label for="hora"><b>Seleccionar hora:</b></label>
+            <input type="time" id="reservation-time" name="reservation-time" required>
+
+			<br><br>
+
+			<h3><b>Su reserva quedará registrada a confirmar por el Dueño de la herramienta para el día: 
+				<?php echo isset($_SESSION['reservation_date']) ? $_SESSION['reservation_date'] : ''; ?> 
+				y la hora: 
+				<?php echo isset($_SESSION['reservation_time']) ? $_SESSION['reservation_time'] : ''; ?>
+			</b></h3>
 			<br>
             <button type="submit" class="submit-btn">Enviar Reserva</button>
         </form>
     </div>
 
+	<br><br><br><br>
+	<footer class="footer-outer">
+		<p class="copyright">&copy; 2024 App. All rights reserved.</p>
+	</footer>
 
-
-
-
-
-
-
-
-
-
-
-
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<footer class="footer-outer">
-				<div class="container footer-inner">
-		
-					<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
-						<div class="column-1-3">
-							<h1>Prest-AR</h1>
-						</div>
-						<div class="column-2-3">
-							<nav class="footer-nav">
-								<ul>
-									<a href="../index.html" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
-									<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-									<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-									<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
-									
-								</ul>
-							</nav>
-						</div>
-						<div class="column-3-3">
-							<div class="social-icons-footer">
-								<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-								<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-								<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-							</div>
-						</div>
-					</div>
-		
-					<span class="border-bottom-footer"></span>
-		
-					<p class="copyright">&copy; 2024 App. All rights reserved.</p>
-		
-				</div>
-			</footer>
-
+</div>
+</body>
+</html>

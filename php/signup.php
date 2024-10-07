@@ -12,6 +12,7 @@ $mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $usuario = $_POST['usuario'];
+    $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -35,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insertar el nuevo usuario en la base de datos
-    $sql_insert = "INSERT INTO usuarios (usuario, apellido, email, password) 
-                   VALUES (?, ?, ?, ?)";
+    $sql_insert = "INSERT INTO usuarios (usuario, nombre, apellido, email, password) 
+                   VALUES (?, ?, ?, ?, ?)";
     $stmt_insert = $conexion->prepare($sql_insert);
-    $stmt_insert->bind_param("ssss", $usuario, $apellido, $email, $password);
+    $stmt_insert->bind_param("sssss", $usuario, $nombre, $apellido, $email, $password);
 
     if ($stmt_insert->execute()) {
         // Registro exitoso
