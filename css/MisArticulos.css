@@ -129,13 +129,16 @@ html {
 			transform: translateY(-5px); /* Efecto hover para levantar la caja ligeramente */
 		}
 
-		.infobox img {
-			max-width: 100%;
-			height: auto;
-			border-bottom: 1px solid #ddd;
-			padding-bottom: 10px;
-			margin-bottom: 15px; /* Más espacio debajo de la imagen */
-		}
+    .infobox img {
+      width: 300px;  /* Tamaño fijo para el ancho de la imagen */
+      height: 300px; /* Tamaño fijo para el alto de la imagen */
+      object-fit: cover; /* Asegura que la imagen mantenga su proporción */
+      border-radius: 5px; /* Bordes redondeados */
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+  }
+  
 
 		.infobox h2 {
 			font-size: 1.3em;

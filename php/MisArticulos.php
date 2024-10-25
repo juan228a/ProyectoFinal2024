@@ -1,3 +1,28 @@
+<?php
+// Iniciar la sesión para almacenar los datos temporalmente
+session_start();
+
+// Incluir archivo de conexión
+include 'conexion.php';
+
+// Inicializar variables para almacenar los datos del usuario
+$herramientas = [];
+
+// Recuperar todos los datos de la tabla herramientas
+$sql = "SELECT ID, propietario, nombreherramienta, descripcion, precio_hora, precio_dia, precio_semana, categoria, imagenes FROM herramientas";
+$stmt = $conexion->prepare($sql);
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+// Guardar todas las herramientas en un array
+while ($fila = $resultado->fetch_assoc()) {
+    $herramientas[] = $fila;
+}
+
+$stmt->close();
+$conexion->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +78,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="../index.html">Inicio <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../ProyectoFinalGithub/ProyectoFinalGithub/html/ConfirmacionAlquiler.html" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
@@ -78,56 +103,6 @@
 <br>
 <br>
 
-
-
-	 <button id="openModalBtn">
-		<h2>¡Agregue un articulo!</h2>
-	</button>
-
-	 <!-- El Modal -->
-	 <div id="myModal" class="modal">
-   
-	   <!-- Contenido del Modal -->
-	  <!-- <div class="modal-content">
-		 <span class="close">&times;</span>
-		 <h2>Agregue un articulo a su perfil!</h2>
-		 <br>
-		 <div class="infobox">
-			<br>
-			<form>
-				<label for="nombre"><b>Nombre de la herramienta:</b></label>
-				<input type="text" id="nombre" name="nombre" required>
-				<br>
-				<br>
-	
-				<label for="Detalles"><b>Detalles de la herramienta:</b></label>
-				<input type="text" id="detalles" name="detalles" required>
-				<br>
-				<br>
-
-				<label for="precio"><b>Precio de alquiler:</b></label>
-				<input type="number" id="precio" name="precio" required>
-				<br>
-				<br>
-
-				<label for="Descripcion"><b>Descripcion:</b></label>
-				<input type="text" id="Descripcion" name="Descripcion" required>
-				<br>
-				<br>
-
-				<label for="tiempo"><b>Lapso de tiempo a alquilar(opcional):</b></label>
-				<input type="number" id="tiempo" name="tiempo" required>
-				<br>
-				<br>
-	
-				<label for="Informacion extra"><b>Informacion que desee añadir(opcional):</b></label>
-				<input type="text" id="Informacion" name="Informacion" required>
-				<br>
-				<br>
-				<button id="closeModalBtn" type="submit" class="submit-btn">¡Añadir articulo!</button>
-			</form>
-		</div>
-	 -->
 	   </div>
    
 	 </div>
@@ -138,15 +113,30 @@
 	<hr>
 
     <div class="catalogo">
-        <div class="infobox">
-            <img src="../img/taladroelect.jpeg" alt="Taladro Eléctrico">
-            <h2>Taladro Eléctrico</h2>
-            <p>Potente taladro eléctrico para trabajos de construcción.</p>
-            <p class="precio">$12 por día</p>
-            <button>Alquilar</button>
-        </div>
-
+    <?php foreach ($herramientas as $herramienta): ?>
+    <div class="infobox">
+        <!-- Mostrar la imagen de la herramienta -->
+        <img class="imagen-herramienta" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
+        
+        <!-- Mostrar el nombre de la herramienta -->
+        <h2><?php echo $herramienta['nombreherramienta']; ?></h2>
+        
+        <!-- Mostrar la descripción de la herramienta -->
+        <p><?php echo $herramienta['descripcion']; ?></p>
+        
+        <!-- Mostrar los precios (hora, día, semana) -->
+        <p class="precio">Precio por hora: $<?php echo $herramienta['precio_hora']; ?></p>
+        <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
+        <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
+        
+		<!-- Botón para alquilar -->
+		<a href="catalogo.php?id=<?php echo $herramienta['ID']; ?>">
+		<button>Alquilar</button>
+		</a>
     </div>
+    <?php endforeach; ?>
+</div>
+
 
 <br>
 
