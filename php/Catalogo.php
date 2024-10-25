@@ -1,6 +1,8 @@
 <?php
 // Iniciar la sesión
 session_start();
+// Incluir archivo de conexión
+include 'conexion.php';
 
 // Verificar si el usuario ha iniciado sesión
 if (isset($_SESSION['username'])) {
@@ -8,7 +10,35 @@ if (isset($_SESSION['username'])) {
 } else {
     $username = "Log In";
 }
+
+// Obtener el ID de la herramienta desde la URL
+$id_herramienta = $_GET['id'] ?? null; // Cambiar 'ID' por 'id'
+
+if ($id_herramienta === null) {
+    echo "Error: ID de herramienta no proporcionado.";
+    exit;
+}
+
+// Conectar a la base de datos (asegúrate de que $conexion esté definido)
+// $conexion = new mysqli(...); // Agrega tu conexión aquí
+
+// Consultar la herramienta
+$sql = "SELECT * FROM herramientas WHERE ID = ?";
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("i", $id_herramienta);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$herramienta = $resultado->fetch_assoc();
+
+if ($herramienta) {
+    // Aquí puedes continuar con el resto de tu lógica,
+    // como mostrar los detalles de la herramienta.
+} else {
+    echo "Error: Herramienta no encontrada.";
+    exit;
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -163,38 +193,29 @@ if (isset($_SESSION['username'])) {
 			<br>
 		
 			<div class="catalogo">
-		
-				<div class="infobox">
-					
-					<h2>Taladro Eléctrico</h2>
-					<br>
-					<br>
-					<div class="carousel-container">
-						<!-- Botón para cambiar a la imagen anterior -->
-						<a class="prev" onclick="changeImage(-1)">&#10094;</a>
-						
-						<!-- Contenedor de la imagen -->
-						<div class="image-container">
-						  <img id="image-display" src="../img/taladroelect.jpeg" a>
-						</div>
-					  
-						<!-- Botón para cambiar a la imagen siguiente -->
-						<a class="next" onclick="changeImage(1)">&#10095;</a>
-					  </div>
-					  
-					<!--<img src="../img/taladroelect.jpeg"Taladro Eléctrico">-->
-					<br>
-					<br>
-					<br>
-					<p><b>Descripcion:</b>''Taladro de alta potencia para trabajos de construcción.''</p>
-					<br>
-					<p><b>Detalles:</b>-</p>
-					<br>
-					<p><b>Estado de la herramienta:</b>-</p>
-					<br>
-					<!--<p class="precio">$10 por día</p>-->
-					<br>
-					<br>
+    <div class="infobox">
+	<h2><?php echo $herramienta['nombreherramienta']; ?></h2>
+        <br>
+        <br>
+        <div class="carousel-container">
+            <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+            <div class="image-container">
+			<img id="image-display" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
+            </div>
+            <a class="next" onclick="changeImage(1)">&#10095;</a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <p><b>Descripción:</b> <?php echo $herramienta['descripcion']; ?></p>
+        <br>
+        <p><b>Propietario:</b> <?php echo $herramienta['propietario']; ?></p>
+        <br>
+        <p><b>Precio por Hora:</b> $<?php echo $herramienta['precio_hora']; ?></p>
+				<p><b>Precio por Día:</b> $<?php echo $herramienta['precio_dia']; ?></p>
+				<p><b>Precio por Semana:</b> $<?php echo $herramienta['precio_semana']; ?></p>
+				<p><b>Categoría:</b> <?php echo $herramienta['categoria']; ?></p>
+        <br>
 
 					<div class="reservation-form">
 					<form action="ConfirmacionAlquiler.php" method="POST">

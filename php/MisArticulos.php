@@ -129,13 +129,16 @@ $conexion->close();
         <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
         <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
         
-		<!-- Botón para alquilar -->
-		<a href="catalogo.php?id=<?php echo $herramienta['ID']; ?>">
-		<button>Alquilar</button>
-		</a>
+        <!-- Formulario para alquilar -->
+        <form action="catalogo.php?id=<?php echo $herramienta['ID']; ?>" method="POST">
+           
+          
+            <button type="submit">Alquilar</button>
+        </form>
     </div>
     <?php endforeach; ?>
 </div>
+
 
 
 <br>
