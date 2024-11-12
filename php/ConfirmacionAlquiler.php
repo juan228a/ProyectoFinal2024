@@ -1,44 +1,87 @@
 <?php
-// Iniciar la sesión para almacenar los datos temporalmente
+
 session_start();
-
-// Incluir archivo de conexión
 include 'conexion.php';
+require 'C:/xampp/htdocs/app/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'C:/xampp/htdocs/app/vendor/phpmailer/phpmailer/src/SMTP.php';
+require 'C:/xampp/htdocs/app/vendor/phpmailer/phpmailer/src/Exception.php';
 
-// Inicializar variables para almacenar los datos del usuario
-$nombre = $apellido = $email = $password = $telefono = $provincia = $ciudad = $descripcion = "";
 
-// Verificar si el usuario ha iniciado sesión
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$nombre = $apellido = $email = $telefono = $provincia = $ciudad = $descripcion = "";
+
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 
-    // Recuperar los datos del usuario de la base de datos
-    $sql = "SELECT nombre, apellido, email, password , telefono, provincia, ciudad, descripcion FROM usuarios WHERE usuario = ?";
+    $sql = "SELECT nombre, apellido, email, telefono FROM usuarios WHERE usuario = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($nombre, $apellido, $email, $password, $telefono, $provincia, $ciudad, $descripcion);
+    $stmt->bind_result($nombre, $apellido, $email, $telefono);
     $stmt->fetch();
     $stmt->close();
 } else {
-    // Si no ha iniciado sesión, redirigir a la página de login
     header("Location: ../html/login.html");
     exit();
 }
 
-// Capturar los datos del formulario de fecha y hora
-if (isset($_POST['reservation-date']) && isset($_POST['reservation-time'])) {
-    // Guardar los valores de fecha y hora en variables
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $telefono = $_POST['telefono'];
+    $direccion = $_POST['direccion'];
+    $horas = $_POST['horas'];
+    $experiencia = $_POST['experiencia'];
+    $informacion = $_POST['informacion'];
     $date = $_POST['reservation-date'];
     $time = $_POST['reservation-time'];
-    
-    // Guardar los datos en la sesión
-    $_SESSION['reservation_date'] = $date;
-    $_SESSION['reservation_time'] = $time;
-} else {
-    // Si no se han enviado datos, mostrar mensaje de error
-    echo "No se ha seleccionado una fecha y hora.";
-    exit();
+    $email_destinatario = $email;
+
+    $subject = "Confirmación de Reserva - Prest-AR";
+    $message = "
+    <html>
+    <body>
+        <h2>Detalles de la Reserva</h2>
+        <p><strong>Nombre:</strong> $nombre $apellido</p>
+        <p><strong>Teléfono:</strong> $telefono</p>
+        <p><strong>Dirección:</strong> $direccion</p>
+        <p><strong>Horas a alquilar:</strong> $horas</p>
+        <p><strong>Experiencia con la herramienta:</strong> $experiencia</p>
+        <p><strong>Fecha de reserva:</strong> $date</p>
+        <p><strong>Hora de reserva:</strong> $time</p>
+    </body>
+    </html>
+    ";
+
+    $mail = new PHPMailer(true);
+
+    try {
+
+
+     
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'prestar2024@gmail.com'; // Cambia a tu correo
+        $mail->Password = 'o c p i g s d v t fa e d z h p'; // Cambia a tu contraseña o token de aplicación
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+
+        $mail->setFrom('prestar2024@gmail.com', 'Prest-AR');
+        $mail->addAddress($email_destinatario);
+
+        $mail->isHTML(true);
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+
+        $mail->send();
+        echo "Correo enviado exitosamente.";
+    } catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    }
 }
 
 $conexion->close();
@@ -56,7 +99,6 @@ $conexion->close();
 <body>
 
 <div id="page-wrap">
-
 	<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
 			<a class="navbar-brand" href="">Prest-AR</a>
@@ -70,15 +112,15 @@ $conexion->close();
 		<br>
 		<h5 class="Complet">(Mediante estos datos, el dueño se comunicará con usted para confirmar su reserva!)</h5>
 		<br>
-        <form action="confirmacionCarrito.php" method="POST">
+        <form  method="post">
             <label for="nombre">Nombre:<b></b></label>
-            <input type="text" id="nombre" name="nombre" required value="<?php echo $nombre?>" readonly>
+            <input type="text" id="nombre" name="nombre" required value="<?php echo $nombre ?>" readonly>
 
 			<label for="apellido">Apellido:<b></b></label>
-            <input type="text" id="apellido" name="apellido" required value="<?php echo $apellido?>" readonly>
+            <input type="text" id="apellido" name="apellido" required value="<?php echo $apellido ?>" readonly>
 
             <label for="email"><b>Email:</b></label>
-            <input type="email" id="email" name="email" required value="<?php echo $email?>" readonly>
+            <input type="email" id="email" name="email" required value="<?php echo $email ?>" readonly>
 
             <label for="telefono"><b>Teléfono:</b></label>
             <input type="tel" id="telefono" name="telefono" required>

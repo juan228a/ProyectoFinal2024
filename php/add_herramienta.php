@@ -23,6 +23,9 @@ if (isset($_SESSION['username'])) {
 
 $conexion->close();
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +37,7 @@ $conexion->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Herramienta</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+
 </head>
 <body>
    
@@ -83,13 +87,16 @@ $conexion->close();
             <!-- Campo oculto para el nombre de usuario -->
             <input type="hidden" name="propietario" value="<?php echo $nombre; ?>">
 
-            <button type="submit" class="btn-submit">Añadir herramienta</button>
-
-            
+            <button type="submit"  class="btn-submit">Añadir herramienta</button>
+       
+   
         </form>
-        <div class="login-link">
-            <p>Ya tienes una cuenta? <a href="../html/login.html">Ingresa</a></p>
-        </div>
+   
     </div>
+ 
+
 </body>
+
+
 </html>
+

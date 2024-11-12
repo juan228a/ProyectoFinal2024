@@ -69,7 +69,7 @@ if (isset($_SESSION['username'])) {
 						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta</a>
+						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
 					</li>
 
 					<li class="nav-item dropdown">

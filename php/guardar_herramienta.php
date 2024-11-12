@@ -54,4 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conexion->close();
+
+
 ?>
+
+<script>
+// Redirigir a login.html después de 3 segundos
+setTimeout(function(){
+    window.location.href = '../php/login.php';
+}, 2000);
+</script>
