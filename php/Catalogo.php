@@ -63,12 +63,12 @@ if ($herramienta) {
 	<meta name="twitter:card" content="" />
 
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../css/owl.carousel.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="../css/animate.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -118,72 +118,7 @@ if ($herramienta) {
 			</nav>
 
 		</div>
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				background-color: #f4f4f4;
-				margin: 0;
-				padding: 0;
-			}
-	
-			.catalogo {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				margin: 20px;
-			}
-	
-			.infobox {
-				background-color: white;
-				border: 1px solid #ddd;
-				border-radius: 8px;
-				padding: 15px;
-				margin: 10px;
-				width: 800px;
-				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-				text-align: center;
-			}
-	
-			.infobox img {
-				max-width: 100%;
-				height: auto;
-				border-bottom: 1px solid #ddd;
-				padding-bottom: 10px;
-			}
-	
-			.infobox h2 {
-				font-size: 1.5em;
-				margin: 10px 0;
-			}
-	
-			.infobox p {
-				font-size: 1em;
-				color: #555;
-				margin: 5px 0;
-			}
-	
-			.infobox .precio {
-				font-size: 1.2em;
-				font-weight: bold;
-				color: #e74c3c;
-				margin: 10px 0;
-			}
-	
-			.infobox button {
-				background-color: #3498db;
-				color: white;
-				padding: 10px;
-				border: none;
-				border-radius: 5px;
-				cursor: pointer;
-				font-size: 1em;
-				transition: background-color 0.3s ease;
-			}
-	
-			.infobox button:hover {
-				background-color: #2980b9;
-			}
-		</style>
+		
 		<br>
 		<br>
 		<br>
