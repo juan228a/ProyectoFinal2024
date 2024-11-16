@@ -75,7 +75,7 @@ if (isset($_SESSION['username'])) {
 					<li class="nav-item dropdown">
     <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
     <ul class="dropdown-menu">
-        <li><a href="./html/userPerfil.html">Editar Perfil</a></li>
+        <li><a href="../html/EditPerfil.html">Editar Perfil</a></li>
         <li><a href="#">Mis Alquileres</a></li>
         <li><a href="#">Mis Articulos</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
