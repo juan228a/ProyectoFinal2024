@@ -37,13 +37,13 @@ if (isset($_SESSION['username'])) {
 	<link rel="stylesheet" href="../css/owl.carousel.css">
 	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="../css/animate.css">
+	 <link rel="stylesheet" href="../css/animate.css"> 
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/style.css">
-	
+	 <link rel="stylesheet" href="../css/style.css">
+	 
 
 </head>
 <body>
@@ -69,23 +69,19 @@ if (isset($_SESSION['username'])) {
 						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="add_herramienta.php">Subir Herramienta<span class="sr-only">(current)</span></a>
 					</li>
 
 					<li class="nav-item dropdown">
     <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
     <ul class="dropdown-menu">
-        <li><a href="../html/EditPerfil.html">Editar Perfil</a></li>
-        <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="#">Mis Articulos</a></li>
-        <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
+		<li><a href="editperfil.php">Editar Perfil</a></li>
+        <li><a href="MisAlquileres.php">Mis Alquileres</a></li>
+        <li><a href="MisHerramientas.php">Mis Herramientas</a></li>
+        <li><a href="cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
-				<div class="social-icons-header">
-					<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-					<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-					<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-				</div>
+			
 			</div>
 		</nav>
 
@@ -117,11 +113,13 @@ document.addEventListener('click', function(event) {
 });
 </script>
 
+<br><br>
+
 		<div class="container fh5co-hero-inner">
 			<h1 class="animated fadeIn wow" data-wow-delay="0.4s">Herramientas a tu Alcance: Alquila Fácilmente y Sin Complicaciones</h1>
 			<p class="animated fadeIn wow" data-wow-delay="0.67s">¡Haz realidad tus proyectos con las herramientas adecuadas! </p>
-			<a href="Catalogo.php"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$().goTo();return false;">Alquilar</button></a>
-			<a href="MisArticulos.php"><button  class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s" onclick="$('#fh5co-features').goTo();return false;">Catalogo</button>
+			<!-- <a href="Catalogo.php"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$().goTo();return false;">Alquilar</button></a> -->
+			<a href="MisArticulos.php"><button  class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s">Alquilar</button>
 			
 		</div>
 
@@ -134,23 +132,26 @@ document.addEventListener('click', function(event) {
 													  SLIDER
 		 ========================================================================================================== -->
 
-	<div class="fh5co-slider-outer wow fadeIn" data-wow-delay="0.36s">
-		<h1>Prest-AR</h1>
-		<small>Categorias</small>
-		<div class="container fh5co-slider-inner">
-
-			<div class="owl-carousel owl-theme">
-
-				<div class="item"><img src="../img/Historia de Instagram Anuncio de Servicio Técnico de Aire Acondicionado Moderno Azul(1).png" alt="sddddsd"></div>
-				<div class="item"><img src="../img/smartphone-2.png" alt=""></div>
-				<div class="item"><img src="../img/iphone.png" alt=""></div>
-				<div class="item"><img src="../img/smartphone-2.png" alt=""></div>
-
-
+		 <div class="fh5co-slider-outer wow fadeIn" data-wow-delay="0.36s">
+			<h1>Prest-AR</h1>
+			<small>Categorias</small>
+			<div class="container fh5co-slider-inner">
+				<div class="owl-carousel owl-theme">
+					<div class="item">
+						<a href="#"><img src="../img/HerramientasElectricas.png" alt="Herramientas Eléctricas"></a>
+						<b>ELECTRICAS</b>
+					</div>
+					<div class="item">
+						<a href="#"><img src="../img/HerramientasManuales.jpg" alt="Herramientas Manuales"></a>
+						<b>MANUALES</b>
+					</div>
+					<div class="item">
+						<a href="#"><img src="../img/AllHerramientas.jpg" alt="Todas las Herramientas"></a>
+						<b>TODO</b>
+					</div>
+				</div>
 			</div>
-
 		</div>
-	</div>
 
 
 	<!-- ==========================================================================================================
@@ -216,7 +217,7 @@ document.addEventListener('click', function(event) {
 						<h1>¿Aún tienes dudas?</h1>
 						<p>Contacta con nosotros y te ayudaremos encantados.</p>
 						<br>
-						<button class="btn btn-md features-btn-first animated fadeInLeft wow"> <a class="boton_vinculo" href="./html/contacto.html">Contacto</a></button>
+						<button class="btn btn-md features-btn-first animated fadeInLeft wow"> <a class="boton_vinculo" href="../html/contacto.html">Contacto</a></button>
 					</div>
 				</div>
 			</div>
@@ -240,8 +241,8 @@ document.addEventListener('click', function(event) {
 						<ul>
 							<a href="#" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
 							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-							<a href="./html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-							<a href="./html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
 							
 						</ul>
 					</nav>
@@ -267,10 +268,10 @@ document.addEventListener('click', function(event) {
 
 </div> <!-- main page wrapper -->
 	
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/owl.carousel.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/owl.carousel.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

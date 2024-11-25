@@ -1,28 +1,29 @@
 <?php
-// Iniciar la sesión para almacenar los datos temporalmente
+// Iniciar la sesión
 session_start();
+include 'conexion.php'; // Asegúrate de que el archivo de conexión a la base de datos sea correcto
 
-// Incluir archivo de conexión
-include 'conexion.php';
-
-// Inicializar variables para almacenar los datos del usuario
-$herramientas = [];
-
-// Recuperar todos los datos de la tabla herramientas
-$sql = "SELECT ID, propietario, nombreherramienta, descripcion, precio_hora, precio_dia, precio_semana, categoria, imagenes FROM herramientas";
-$stmt = $conexion->prepare($sql);
-$stmt->execute();
-$resultado = $stmt->get_result();
-
-// Guardar todas las herramientas en un array
-while ($fila = $resultado->fetch_assoc()) {
-    $herramientas[] = $fila;
+// Verificar si el usuario ha iniciado sesión (solo para mostrar el botón de login o username)
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    $username = "Log In";
 }
 
-$stmt->close();
+// Obtener todas las herramientas de la tabla 'herramientas'
+$sql_herramientas = "SELECT * FROM herramientas";
+$resultado_herramientas = $conexion->query($sql_herramientas);
+
+if ($resultado_herramientas === false) {
+    die("Error en la consulta de herramientas: " . $conexion->error);
+}
+
+$herramientas = $resultado_herramientas->fetch_all(MYSQLI_ASSOC);
+
+// Cerrar la conexión a la base de datos
 $conexion->close();
 ?>
-
+<!-- AQUI COMIENZA EL HEADER --> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,12 +46,13 @@ $conexion->close();
 	<meta name="twitter:card" content="" />
 
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="/css/animate.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -58,19 +60,20 @@ $conexion->close();
 	<link rel="stylesheet" href="../css/MisArticulos.css">
 
 </head>
+
 <body>
 
 
-<div id="page-wrap">
-
-
-	<!-- ==========================================================================================================
-													   HERO
-		 ========================================================================================================== -->
-
-	<div id="fh5co-hero-wrapper">
+	<div id="page-wrap">
+	
+	
+	  <!--==========================================================================================================
+														   HERO
+			 ========================================================================================================== -->
+	
+		<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="">Prest-AR</a>
+			<a class="navbar-brand" href="index.php">Prest-AR</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -81,23 +84,54 @@ $conexion->close();
 						<a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../ProyectoFinalGithub/ProyectoFinalGithub/html/ConfirmacionAlquiler.html" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
+						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
 					</li>
-					<!-- <li class="nav-item">
-						<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
-					</li> -->
-					<li class="nav-item">
-						<a class="nav-link" href="../html/logIn.html" >Login/SignUp</a>
-					</li>
-				</ul>
-				<div class="social-icons-header">
-					<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-					<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-					<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+                        <li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
+    <ul class="dropdown-menu">
+        <li><a href="../php/editperfil.php">Editar Perfil</a></li>
+        <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
+        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
+        <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
+    </ul>
+</li>
+					<div class="social-icons-header">
+						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+					</div>
 				</div>
-			</div>
-		</nav>
-    </div>
+			</nav>
+            <script>
+        function toggleDropdown() {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const isVisible = dropdownMenu.style.display === 'block';
+
+    // Oculta todos los menús desplegables
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+
+    // Si el menú no estaba visible, lo mostramos
+    if (!isVisible) {
+        dropdownMenu.style.display = 'block';
+    }
+}
+
+// Cierra el dropdown si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+});
+</script>
+		</div>
+    
+
+        <!-- AQUI TERMINA EL HEADER -->
 
 
 <br>
@@ -111,32 +145,34 @@ $conexion->close();
 	<br>
 	<br>
 	<hr>
-
-    <div class="catalogo">
-    <?php foreach ($herramientas as $herramienta): ?>
-    <div class="infobox">
-        <!-- Mostrar la imagen de la herramienta -->
-        <img class="imagen-herramienta" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
-        
-        <!-- Mostrar el nombre de la herramienta -->
-        <h2><?php echo $herramienta['nombreherramienta']; ?></h2>
-        
-        <!-- Mostrar la descripción de la herramienta -->
-        <p><?php echo $herramienta['descripcion']; ?></p>
-        
-        <!-- Mostrar los precios (hora, día, semana) -->
-        <p class="precio">Precio por hora: $<?php echo $herramienta['precio_hora']; ?></p>
-        <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
-        <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
-        
-        <!-- Formulario para alquilar -->
-        <form action="catalogo.php?id=<?php echo $herramienta['ID']; ?>" method="POST">
-           
-          
-            <button type="submit">Alquilar</button>
-        </form>
-    </div>
-    <?php endforeach; ?>
+	<div class="catalogo"> 
+    <?php if (!empty($herramientas)): ?>
+        <?php foreach ($herramientas as $herramienta): ?>
+            <div class="infobox">
+                <!-- Mostrar la imagen de la herramienta -->
+                <img class="imagen-herramienta" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
+                
+                <!-- Mostrar el nombre de la herramienta -->
+                <h2><?php echo $herramienta['nombreherramienta']; ?></h2>
+                
+                <!-- Mostrar la descripción de la herramienta -->
+                <p><?php echo $herramienta['descripcion']; ?></p>
+                
+                <!-- Mostrar los precios (hora, día, semana) -->
+                <p class="precio">Precio por hora: $<?php echo $herramienta['precio_hora']; ?></p>
+                <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
+                <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
+                
+                <!-- Formulario para alquilar -->
+                <form action="catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
+                    <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
+                    <button type="submit">Alquilar</button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No hay herramientas disponibles en este momento.</p>
+    <?php endif; ?>
 </div>
 
 

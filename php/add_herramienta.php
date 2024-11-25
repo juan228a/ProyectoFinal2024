@@ -8,24 +8,22 @@ include 'conexion.php';
 // Verificar si el usuario ha iniciado sesión
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-    // Recuperar el nombre del usuario de la base de datos
-    $sql = "SELECT nombre FROM usuarios WHERE usuario = ?";
+    
+    // Retrieve the user's ID from the database
+    $sql = "SELECT ID, nombre FROM usuarios WHERE usuario = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($nombre);
+    $stmt->bind_result($userID, $nombre);
     $stmt->fetch();
     $stmt->close();
 } else {
+    $userID = null;
     $nombre = "";
     $username = "Log In";
 }
 
 $conexion->close();
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -37,10 +35,9 @@ $conexion->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Añadir Herramienta</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
-
+<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-   
     <div class="container">
         <h2>Añadir herramienta</h2>
         <form action="guardar_herramienta.php" method="post" enctype="multipart/form-data">
@@ -84,19 +81,13 @@ $conexion->close();
                 <label for="imagenes">Imágenes</label>
                 <input type="file" id="imagenes" name="imagenes[]" multiple required>
             </div>
-            <!-- Campo oculto para el nombre de usuario -->
-            <input type="hidden" name="propietario" value="<?php echo $nombre; ?>">
+            <!-- Pass `IDusuario` instead of `nombre` -->
+            <input type="hidden" name="IDusuario" value="<?php echo $userID; ?>">
 
-            <button type="submit"  class="btn-submit">Añadir herramienta</button>
-       
-   
+            <button type="submit" class="btn-submit">Añadir herramienta</button>
         </form>
-   
     </div>
- 
-
 </body>
-
-
 </html>
+
 

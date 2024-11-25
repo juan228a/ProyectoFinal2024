@@ -5,7 +5,7 @@ include 'conexion.php';
 // Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
-    $propietario = $_POST['propietario']; // El nombre de usuario oculto del propietario
+    $id_usuario = $_POST['IDusuario']; // Ahora obtenemos el ID del usuario directamente desde el formulario
     $nombre_herramienta = $_POST['nombreherramienta'];
     $precio_hora = $_POST['precio_hora'];
     $precio_dia = $_POST['precio_dia'];
@@ -32,35 +32,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagenes_guardadas = implode(",", $ruta_imagenes);
 
     // Insertar los datos en la base de datos
-    $sql = "INSERT INTO herramientas (propietario, nombreherramienta, precio_hora, precio_dia, precio_semana, categoria, descripcion, imagenes) 
+    $sql = "INSERT INTO herramientas (IDusuario, nombreherramienta, precio_hora, precio_dia, precio_semana, categoria, descripcion, imagenes) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Preparar la declaración SQL
     if ($stmt = $conexion->prepare($sql)) {
-        $stmt->bind_param("ssdddsss", $propietario, $nombre_herramienta, $precio_hora, $precio_dia, $precio_semana, $categoria, $descripcion, $imagenes_guardadas);
+        $stmt->bind_param("isdddsss", $id_usuario, $nombre_herramienta, $precio_hora, $precio_dia, $precio_semana, $categoria, $descripcion, $imagenes_guardadas);
 
         // Verificar si la inserción fue exitosa
         if ($stmt->execute()) {
-            echo "Herramienta guardada exitosamente.";
+            $mensaje =  "Herramienta guardada exitosamente.";
         } else {
-            echo "Error al guardar la herramienta: " . $stmt->error;
+            $mensaje =  "Error al guardar la herramienta: " . $stmt->error;
         }
 
         $stmt->close();
     } else {
         // Manejar el error de la preparación de la consulta
-        echo "Error en la consulta SQL: " . $conexion->error;
+        $mensaje =  "Error en la consulta SQL: " . $conexion->error;
     }
 }
 
 $conexion->close();
-
-
 ?>
 
-<script>
-// Redirigir a login.html después de 3 segundos
-setTimeout(function(){
-    window.location.href = '../php/login.php';
-}, 2000);
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de la Actualización</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script>
+        // Redirigir a editoruser.php después de 3 segundos
+        setTimeout(function(){
+            window.location.href = 'index.php';
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <h2><?php echo $mensaje; ?></h2>
+        </div>
+    </div>
+</body>
+</html>

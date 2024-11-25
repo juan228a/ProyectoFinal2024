@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Montserrat", "sans-serif";
+  }
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background: url('../img/pexels-cottonbro-4488660.jpg') no-repeat center center fixed; /* Añadir imagen de fondo */
+    
+    background: url('../img/pexels-cottonbro-4488660.jpg') no-repeat center center fixed; /*Añadir imagen de fondo*/ 
     background-size: cover; /* Ajustar la imagen al tamaño de la ventana */
     background-color: #f9f9f9; /* Mantener el color de fondo */
-    margin: 0;
-    padding: 0;
     color: black; /* Color de texto por defecto */
     text-shadow: 1px 1px 2px white; /* Borde blanco suave alrededor del texto */
 }
@@ -56,7 +62,7 @@ textarea {
     display: inline-block;
     width: 100%;
     padding: 12px;
-    background-color: #ff6f61;
+    background-color: #234197;
     color: #fff;
     text-align: center;
     font-size: 16px;
@@ -67,7 +73,7 @@ textarea {
 }
 
 .btn-submit:hover {
-    background-color: #e65c50;
+    background-color: #413cba;
 }
 
 .form-group-inline {

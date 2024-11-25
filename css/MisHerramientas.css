@@ -52,8 +52,6 @@ html {
  
 }
 
-
-
 .main-navbar-nav {
   color: #fff !important;
  
@@ -97,39 +95,98 @@ html {
   -ms-transition: all .2s ease;
   transition: all .2s ease;
 }
-
-
 /* HASTA AQUI TERMINA EL HEADER */
 
-.centrarform{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-
-.centered-content {
-    width: 90%; /* Usa el 90% del ancho de la pantalla */
-    max-width: 500px; /* Ancho máximo en pantallas grandes */
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .tool-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 300px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin: 10px;
     text-align: center;
-    transition: all 0.3s ease; /* Transición para un efecto suave al cambiar tamaño */
-}
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tool-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .tool-name {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .tool-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .tool-actions button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .modal-buttons button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .yes-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .no-btn {
+    background-color: #f44336;
+    color: white;
+  }
 
-
-
-
-
-
-
-
-
-
-
-.footer-outer {
+  .footer-outer {
     width: 100%;
     padding: 50px;
     height: 150px;
