@@ -251,9 +251,11 @@ document.addEventListener('click', function(event) {
         </div>
         <br><br><br>
         <p><b>Descripción:</b> <?php echo htmlspecialchars($herramienta['descripcion']); ?></p>
-        <br>
+        
+		<p><b>Marca:</b> <?php echo htmlspecialchars($herramienta['marca_herramienta']); ?></p>
+        
         <p><b>Propietario:</b> <?php echo htmlspecialchars($nombre_usuario); ?></p>
-        <br>
+        
         <p><b>Precio por Hora:</b> $<?php echo htmlspecialchars($herramienta['precio_hora']); ?></p>
         <p><b>Precio por Día:</b> $<?php echo htmlspecialchars($herramienta['precio_dia']); ?></p>
         <p><b>Precio por Semana:</b> $<?php echo htmlspecialchars($herramienta['precio_semana']); ?></p>

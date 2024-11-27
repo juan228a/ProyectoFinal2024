@@ -7,7 +7,7 @@ include 'conexion.php'; // Asegúrate de que el archivo de conexión a la base d
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    $username = "Log In";
+    $username = "Log In/Sign Up";
 }
 
 // Obtener todas las herramientas que no están en el carrito
@@ -80,7 +80,7 @@ $conexion->close();
 	
 		<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="index.php">Prest-AR</a>
+			<a class="navbar-brand" href="../index.html">Prest-AR</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -88,10 +88,10 @@ $conexion->close();
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="../index.html">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="../html/logIn.html" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
 					</li>
                         <li class="nav-item dropdown">
     <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
@@ -171,7 +171,7 @@ document.addEventListener('click', function(event) {
                 <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
                 
                 <!-- Formulario para alquilar -->
-                <form action="catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
+                <form action="../html/login.html" method="POST">
                     <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
                     <button type="submit">Alquilar</button>
                 </form>

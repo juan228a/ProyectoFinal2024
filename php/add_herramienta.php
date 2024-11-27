@@ -46,6 +46,11 @@ $conexion->close();
                 <input type="text" id="nombreherramienta" name="nombreherramienta" placeholder="Ponle un nombre" required>
             </div>
 
+            <div class="input-group">
+                <label for="marca_herramienta">Marca</label>
+                <input type="text" id="marca_herramienta" name="marca_herramienta" placeholder="Ponle un nombre" required>
+            </div>
+
             <div class="form-group-inline">
                 <div class="input-group">
                     <label for="precio_hora">Precio por hora</label>

@@ -7,11 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $id_usuario = $_POST['IDusuario']; // Ahora obtenemos el ID del usuario directamente desde el formulario
     $nombre_herramienta = $_POST['nombreherramienta'];
+    $marca_herramienta = $_POST['marca_herramienta'];
     $precio_hora = $_POST['precio_hora'];
     $precio_dia = $_POST['precio_dia'];
     $precio_semana = $_POST['precio_semana'];
     $categoria = $_POST['categoria'];
     $descripcion = $_POST['descripcion'];
+   
 
     // Procesar múltiples imágenes
     $imagenes = $_FILES['imagenes'];
@@ -32,12 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagenes_guardadas = implode(",", $ruta_imagenes);
 
     // Insertar los datos en la base de datos
-    $sql = "INSERT INTO herramientas (IDusuario, nombreherramienta, precio_hora, precio_dia, precio_semana, categoria, descripcion, imagenes) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO herramientas (IDusuario, nombreherramienta, marca_herramienta, precio_hora, precio_dia, precio_semana, categoria, descripcion, imagenes) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Preparar la declaración SQL
     if ($stmt = $conexion->prepare($sql)) {
-        $stmt->bind_param("isdddsss", $id_usuario, $nombre_herramienta, $precio_hora, $precio_dia, $precio_semana, $categoria, $descripcion, $imagenes_guardadas);
+        $stmt->bind_param("issdddsss", $id_usuario, $nombre_herramienta, $marca_herramienta, $precio_hora, $precio_dia, $precio_semana, $categoria, $descripcion, $imagenes_guardadas);
 
         // Verificar si la inserción fue exitosa
         if ($stmt->execute()) {

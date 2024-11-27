@@ -6,7 +6,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: transparent !important; /* Fondo transparente */
+    background-color: black !important; /* Fondo transparente */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important; /* Sombra para definir los bordes */
     padding: 0;
     list-style: none;

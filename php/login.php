@@ -10,13 +10,10 @@ session_start();
 
 // Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verificar si los campos de username y password están en $_POST
     if (isset($_POST['username']) && isset($_POST['password'])) {
-        // Obtener los datos del formulario
         $usuario = $_POST['username'];
         $password = $_POST['password'];
 
-        // Consulta para verificar las credenciales
         $sql = "SELECT * FROM usuarios WHERE usuario = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("s", $usuario);
@@ -24,10 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultado = $stmt->get_result();
 
         if ($resultado->num_rows > 0) {
-            // Obtener los datos del usuario
             $fila = $resultado->fetch_assoc();
             if ($fila['password'] === $password) {
-                // Guardar los datos del usuario en la sesión
                 $_SESSION['username'] = $fila['usuario'];
                 $_SESSION['nombre'] = $fila['nombre'];
                 $_SESSION['email'] = $fila['email'];
@@ -36,16 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['ciudad'] = $fila['ciudad'];
 
                 $mensaje = "Inicio de sesión exitoso. ¡Bienvenido, " . htmlspecialchars($fila['usuario']) . "!";
+
+                // Diferenciar usuarios para redirección
+                $redirectURL = ($usuario === "admin" && $password === "1234") 
+                    ? 'AdministrarPerfiles.php' 
+                    : 'index.php';
             } else {
                 $mensaje = "Contraseña incorrecta.";
+                $redirectURL = "../html/login.html";
             }
         } else {
             $mensaje = "Usuario no encontrado.";
+            $redirectURL =  "../html/login.html";
         }
 
         $stmt->close();
     } else {
         $mensaje = "Campos de usuario o contraseña no establecidos.";
+        $redirectURL =  "../html/login.html";
     }
 }
 ?>
@@ -57,12 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado del Login</title>
     <link rel="stylesheet" href="../css/login.css">
-    <script>
-        // Redirigir a index.php después de 3 segundos
-        setTimeout(function(){
-            window.location.href = 'index.php';
-        }, 3000);
-    </script>
 </head>
 <body>
   <div class="wrapper">
@@ -70,5 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <h2><?php echo $mensaje; ?></h2>
     </div>
   </div>
+
+  <?php if (isset($redirectURL)): ?>
+  <script>
+    // Redirigir después de 3 segundos
+    setTimeout(function() {
+      window.location.href = '<?php echo $redirectURL; ?>';
+    }, 3000);
+  </script>
+  <?php endif; ?>
 </body>
 </html>

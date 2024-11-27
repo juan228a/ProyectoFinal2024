@@ -81,7 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" id="horas" name="horas" required>
 
             <label for="experiencia">Experiencia con la herramienta:</label>
-            <input type="text" id="experiencia" name="experiencia" required>
+            <select  id="experiencia" name="experiencia" required>
+            <option value="Nula">Nula</option>
+            <option value="Baja">Baja</option>
+             <option value="Media">Media</option>
+             <option value="Alta">Alta</option>
+
+
+            </select>
 
             <label for="informacion">Información extra que desee añadir:</label>
             <input type="text" id="informacion" name="informacion" required>

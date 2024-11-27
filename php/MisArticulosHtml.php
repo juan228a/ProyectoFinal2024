@@ -10,15 +10,8 @@ if (isset($_SESSION['username'])) {
     $username = "Log In";
 }
 
-// Obtener todas las herramientas que no están en el carrito
-$sql_herramientas = "
-    SELECT * 
-    FROM herramientas 
-    WHERE IDherramienta NOT IN (
-        SELECT IDherramienta 
-        FROM carrito
-    )
-";
+// Obtener todas las herramientas de la tabla 'herramientas'
+$sql_herramientas = "SELECT * FROM herramientas";
 $resultado_herramientas = $conexion->query($sql_herramientas);
 
 if ($resultado_herramientas === false) {
@@ -94,7 +87,7 @@ $conexion->close();
 						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
 					</li>
                         <li class="nav-item dropdown">
-    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;">Log in /Sign Up</a>
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
@@ -114,26 +107,6 @@ $conexion->close();
     const dropdownMenu = document.querySelector('.dropdown-menu');
     const isVisible = dropdownMenu.style.display === 'block';
 
-    // Oculta todos los menús desplegables
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        menu.style.display = 'none';
-    });
-
-    // Si el menú no estaba visible, lo mostramos
-    if (!isVisible) {
-        dropdownMenu.style.display = 'block';
-    }
-}
-
-// Cierra el dropdown si se hace clic fuera de él
-document.addEventListener('click', function(event) {
-    const target = event.target;
-    if (!target.closest('.nav-item.dropdown')) {
-        document.querySelectorAll('.dropdown-menu').forEach(menu => {
-            menu.style.display = 'none';
-        });
-    }
-});
 </script>
 		</div>
     
@@ -171,9 +144,9 @@ document.addEventListener('click', function(event) {
                 <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
                 
                 <!-- Formulario para alquilar -->
-                <form action="catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
+                <form >
                     <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
-                    <button type="submit">Alquilar</button>
+					<a href="../html/logIn.html"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s">Alquilar</button></a>
                 </form>
             </div>
         <?php endforeach; ?>

@@ -1,3 +1,4 @@
+<!-- AQUI COMIENZA EL HEADER --> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,8 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/dropdown.css">
 	<!-- Owl Carousel  -->
 	<link rel="stylesheet" href="/css/owl.carousel.css">
 	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
@@ -30,7 +32,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/Catalogo.css">
+	<link rel="stylesheet" href="../css/MisArticulos.css">
 
 </head>
 
@@ -45,27 +47,29 @@
 			 ========================================================================================================== -->
 	
 		<div id="fh5co-hero-wrapper">
-			<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-				<a class="navbar-brand" href="">Prest-AR</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-	
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav nav-items-center ml-auto mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="../index.html">Inicio <span class="sr-only">(current)</span></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="../ProyectoFinal2024-main/html/Catalogo.html" onclick="$('#fh5co-features').goTo();return false;">Herramientas</a>
-						</li>
-						 <li class="nav-item">
-							<a class="nav-link" href="#" onclick="$('#fh5co-reviews').goTo();return false;">Reviews</a>
-						</li> 
-						<li class="nav-item">
-							<a class="nav-link" href="../html/logIn.html" >Login/SignUp</a>
-						</li>
-					</ul>
+		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
+			<a class="navbar-brand" href="index.php">Prest-AR</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
+					</li>
+                        <li class="nav-item dropdown">
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
+    <ul class="dropdown-menu">
+        <li><a href="../php/editperfil.php">Editar Perfil</a></li>
+        <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
+        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
+        <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
+    </ul>
+</li>
 					<div class="social-icons-header">
 						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
 						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
@@ -73,227 +77,139 @@
 					</div>
 				</div>
 			</nav>
+            <script>
+        function toggleDropdown() {
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    const isVisible = dropdownMenu.style.display === 'block';
 
+    // Oculta todos los menús desplegables
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+
+    // Si el menú no estaba visible, lo mostramos
+    if (!isVisible) {
+        dropdownMenu.style.display = 'block';
+    }
+}
+
+// Cierra el dropdown si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+});
+</script>
 		</div>
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				background-color: #f4f4f4;
-				margin: 0;
-				padding: 0;
-			}
-	
-			.catalogo {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				margin: 20px;
-			}
-	
-			.infobox {
-				background-color: white;
-				border: 1px solid #ddd;
-				border-radius: 8px;
-				padding: 15px;
-				margin: 10px;
-				width: 800px;
-				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-				text-align: center;
-			}
-	
-			.infobox img {
-				max-width: 100%;
-				height: auto;
-				border-bottom: 1px solid #ddd;
-				padding-bottom: 10px;
-			}
-	
-			.infobox h2 {
-				font-size: 1.5em;
-				margin: 10px 0;
-			}
-	
-			.infobox p {
-				font-size: 1em;
-				color: #555;
-				margin: 5px 0;
-			}
-	
-			.infobox .precio {
-				font-size: 1.2em;
-				font-weight: bold;
-				color: #e74c3c;
-				margin: 10px 0;
-			}
-	
-			.infobox button {
-				background-color: #3498db;
-				color: white;
-				padding: 10px;
-				border: none;
-				border-radius: 5px;
-				cursor: pointer;
-				font-size: 1em;
-				transition: background-color 0.3s ease;
-			}
-	
-			.infobox button:hover {
-				background-color: #2980b9;
-			}
-		</style>
-		<br>
-		<br>
-		<br>
-		<body>
-			<h1 style="text-align: center;">Catálogo de Herramientas para Alquilar</h1>
+    
+
+        <!-- AQUI TERMINA EL HEADER -->
+
+
+<br>
+<br>
+
+	   </div>
+   
+	 </div>
+
+    <br>
+	<br>
+	<br>
+	<hr>
+	<div class="catalogo"> 
+    <?php if (!empty($herramientas)): ?>
+        <?php foreach ($herramientas as $herramienta): ?>
+            <div class="infobox">
+                <!-- Mostrar la imagen de la herramienta -->
+                <img class="imagen-herramienta" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
+                
+                <!-- Mostrar el nombre de la herramienta -->
+                <h2><?php echo $herramienta['nombreherramienta']; ?></h2>
+                
+                <!-- Mostrar la descripción de la herramienta -->
+                <p><?php echo $herramienta['descripcion']; ?></p>
+                
+                <!-- Mostrar los precios (hora, día, semana) -->
+                <p class="precio">Precio por hora: $<?php echo $herramienta['precio_hora']; ?></p>
+                <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
+                <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
+                
+                <!-- Formulario para alquilar -->
+                <form action="catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
+                    <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
+                    <button type="submit">Alquilar</button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No hay herramientas disponibles en este momento.</p>
+    <?php endif; ?>
+</div>
+
+
+
+<br>
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    <br>
 			<br>
 			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<footer class="footer-outer">
+				<div class="container footer-inner">
 		
-			<div class="catalogo">
-		
-				<div class="infobox">
-					
-					<h2>Taladro Eléctrico</h2>
-					<br>
-					<br>
-					<div class="carousel-container">
-						<!-- Botón para cambiar a la imagen anterior -->
-						<a class="prev" onclick="changeImage(-1)">&#10094;</a>
-						
-						<!-- Contenedor de la imagen -->
-						<div class="image-container">
-						  <img id="image-display" src="../img/taladroelect.jpeg" a>
+					<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
+						<div class="column-1-3">
+							<h1>Prest-AR</h1>
 						</div>
-					  
-						<!-- Botón para cambiar a la imagen siguiente -->
-						<a class="next" onclick="changeImage(1)">&#10095;</a>
-					  </div>
-					  
-					<!--<img src="../img/taladroelect.jpeg"Taladro Eléctrico">-->
-					<br>
-					<br>
-					<br>
-					<p><b>Descripcion:</b>''Taladro de alta potencia para trabajos de construcción.''</p>
-					<br>
-					<p><b>Detalles:</b>-</p>
-					<br>
-					<p><b>Estado de la herramienta:</b>-</p>
-					<br>
-					<!--<p class="precio">$10 por día</p>-->
-					<br>
-					<br>
-
-					<div class="reservation-form">
-						<br>
-						<br>
-
-					  
-						<!-- Input para la fecha -->
-						<label for="reservation-date">Selecciona la fecha:</label>
-						<input type="date" id="reservation-date" name="reservation-date" required>
-					  
-						<!-- Input para la hora -->
-						<label for="reservation-time">Selecciona la hora:</label>
-						<input type="time" id="reservation-time" name="reservation-time" required>
-					  
-						<!-- Botón para confirmar la reserva -->
-						<button onclick="makeReservation()"><a href="ConfirmacionAlquiler.html">Alquilar</button>
-						
-						<!-- Mensaje de confirmación -->
-						<p id="confirmation-message"></p>
-					</div>
-				</div>
-			</nav>
-		</div>
-
-		<!-- CATÁLOGO DE HERRAMIENTAS -->
-		<h1>Catálogo de Herramientas para Alquilar</h1>
-
-		<div class="catalogo">
-			<div class="infobox">
-				<img src="../img/taladroelect.jpeg" alt="Taladro Eléctrico">
-				<h2>Taladro Eléctrico</h2>
-				<p>Potente taladro eléctrico para trabajos de construcción.</p>
-				<p class="precio">$12 por día</p>
-				<button>Alquilar</button>
-			</div>
-
-			<div class="infobox">
-				<img src="../img/sierra.jpeg" alt="Sierra Circular">
-				<h2>Sierra Circular</h2>
-				<p>Sierra circular ideal para cortar madera y otros materiales.</p>
-				<p class="precio">$15 por día</p>
-				<button>Alquilar</button>
-			</div>
-
-			<div class="infobox">
-				<img src="../img/amoladora.jpeg" alt="Amoladora">
-				<h2>Amoladora</h2>
-				<p>Amoladora versátil para trabajos de corte y pulido.</p>
-				<p class="precio">$10 por día</p>
-				<button>Alquilar</button>
-			</div>
-
-			<div class="infobox">
-				<img src="../img/lijadora.jpeg" alt="Lijadora Eléctrica">
-				<h2>Lijadora Eléctrica</h2>
-				<p>Lijadora eléctrica para acabados perfectos en madera y metal.</p>
-				<p class="precio">$8 por día</p>
-				<button>Alquilar</button>
-			</div>
-
-			<div class="infobox">
-				<img src="../img/taladroelect2.jpeg" alt="Taladro Inalámbrico">
-				<h2>Taladro Inalámbrico</h2>
-				<p>Taladro inalámbrico con batería de larga duración.</p>
-				<p class="precio">$20 por día</p>
-				<button>Alquilar</button>
-			</div>
-			<!-- Añadir más herramientas si es necesario -->
-		</div>
-
-		<!-- FOOTER -->
-		<footer class="footer-outer">
-			<div class="container footer-inner">
-	
-				<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
-					<div class="column-1-3">
-						<h1>Prest-AR</h1>
-					</div>
-					<div class="column-2-3">
-						<nav class="footer-nav">
-							<ul>
-								<a href="#" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
-								<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-								<a href="./html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-								<a href="./html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
-								
-							</ul>
-						</nav>
-					</div>
-					<div class="column-3-3">
-						<div class="social-icons-footer">
-							<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-							<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-							<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+						<div class="column-2-3">
+							<nav class="footer-nav">
+								<ul>
+									<a href="../index.html" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
+									<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
+									<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+									<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+									
+								</ul>
+							</nav>
+						</div>
+						<div class="column-3-3">
+							<div class="social-icons-footer">
+								<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+								<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+								<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+							</div>
 						</div>
 					</div>
+		
+					<span class="border-bottom-footer"></span>
+		
+					<p class="copyright">&copy; 2024 App. All rights reserved.</p>
+		
 				</div>
-	
-				<span class="border-bottom-footer"></span>
-	
-				<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
-	
-			</div>
-		</footer>
+			</footer>
 
-	<!-- JavaScript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/owl.carousel.js"></script>
-	<script src="js/wow.min.js"></script>
-	<script src="js/main.js"></script>
+			<script src="../js/mainjs.js"></script>
 
+			</body>
 
-</body>
-</html>
+            </html>
