@@ -117,7 +117,7 @@ html {
 			background-color: white;
 			border: 12px solid #ddd;
 			border-radius: 8px;
-			padding: 0px;
+			padding: 5px;
 			margin: 10px;
 			width: 325px;
 			box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -130,14 +130,13 @@ html {
 		}
 
     .infobox img {
-      width: 100%;  /* Tamaño fijo para el ancho de la imagen */
+      width: 300px;  /* Tamaño fijo para el ancho de la imagen */
       height: 300px; /* Tamaño fijo para el alto de la imagen */
       object-fit: cover; /* Asegura que la imagen mantenga su proporción */
       border-radius: 5px; /* Bordes redondeados */
       border-bottom: 1px solid #ddd;
       padding-bottom: 10px;
       margin-bottom: 15px;
-      object-position: center;
   }
   
 
@@ -169,7 +168,6 @@ html {
 			font-size: 1em;
 			transition: background-color 0.3s ease;
 			margin-top: 10px;
-      margin-bottom: 8px;
 		}
 
 		.infobox button:hover {
@@ -268,72 +266,16 @@ html {
     cursor: pointer;
 }
 
-.main-container {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 20px; /* Espacio entre botones */
-}
-
-.button-container {
-  display: flex;
-  justify-content: center; /* Centra los botones horizontalmente */
-  color: black;
-  width: 100%; /* Los botones ocupan todo el ancho */
-  max-width: 300px; /* Máximo ancho en pantallas grandes */
-}
-  
 
 
-.custom-button {
-  width: 100%; /* Botones adaptables al contenedor */
-  padding: 15px;
-  font-size: 16px;
-  background-color: #234197;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.custom-button:hover {
-  background-color: black; /* Cambia el fondo al pasar el cursor */
-}
-
-.text-center {
-  text-align: center;
-}
-
-.button-container2 {
-  display: flex;
-  justify-content: center; /* Centra los botones horizontalmente */
-  color: black;
-  width: 100%; /* Los botones ocupan todo el ancho */
-  max-width: 300px; /* Máximo ancho en pantallas grandes */
-}
-  
 
 
-.button-container3 {
-  display: flex;
-  justify-content: center; /* Centra los botones horizontalmente */
-  color: black;
-  width: 100%; /* Los botones ocupan todo el ancho */
-  max-width: 300px; /* Máximo ancho en pantallas grandes */
-}
-  
 
 
-.btn-secondary {
-  border-width: 4px; /* Grosor del borde */
-  background-color: gray; /* Color de fondo */
-  color: white; /* Color del texto */
-  padding: 15px 60px;
-}
+
+
+
+
 
 
 
@@ -442,58 +384,3 @@ html {
             margin-left: 10px;
           }
           
-
-          
-          @media (max-width: 768px) {
-            .catalogo {
-                margin: 20px 10px; /* Reducir márgenes en pantallas pequeñas */
-                gap: 15px;
-            }
-        
-            .infobox {
-                width: calc(50% - 20px); /* Dos columnas en pantallas medianas */
-                margin: 10px 5px;
-            }
-        
-            .infobox img {
-                width: 100%; /* Ajustar ancho de imagen al contenedor */
-                height: 250px; /* Altura un poco más pequeña */
-            }
-            .custom-button {
-              font-size: 14px;
-              padding: 12px;
-        }
-        
-        @media (max-width: 480px) {
-            .catalogo {
-                margin: 10px 5px;
-                gap: 10px;
-            }
-        
-            .infobox {
-                width: 100%; /* Una columna en pantallas muy pequeñas */
-                margin: 10px 0;
-            }
-        
-            .infobox img {
-                height: 200px; /* Reducir aún más la altura */
-            }
-        
-            .infobox h2 {
-                font-size: 1.1em;
-            }
-        
-            .infobox p, .infobox .precio {
-                font-size: 0.9em;
-            }
-        
-            .infobox button {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-            .custom-button {
-              font-size: 12px;
-              padding: 10px;
-          }
-        }
-      }

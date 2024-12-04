@@ -64,7 +64,7 @@ if (isset($_SESSION['username'])) {
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="../css/MisHerramientas.css">
-    <link rel="stylesheet" href="../css/MisArticulos.css">
+    <!-- <link rel="stylesheet" href="../css/MisArticulos.css"> -->
 
 </head>
 
@@ -150,7 +150,7 @@ document.addEventListener('click', function(event) {
                     </div>
                     <div class="tool-name"><?php echo $herramienta['nombreherramienta']; ?></div>
                     <div class="tool-actions">
-                    <button class="edit-btn" onclick="window.location.href='EditarHerramienta.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>'">Editar</button>
+                    <button class="edit-btn" onclick="window.location.href='editar_herramienta.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>'">Editar</button>
 
                         <button class="delete-btn" onclick="confirmDelete(<?php echo $herramienta['IDherramienta']; ?>)">Eliminar</button>
                     </div>
@@ -206,41 +206,44 @@ document.addEventListener('click', function(event) {
 
     <!-- FOOTER -->
 		 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<footer class="footer-outer">
-			<div class="container footer-inner">
-	
-				<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
-					<div class="column-1-3">
-						<h1>Prest-AR</h1>
-					</div>
-					<div class="column-2-3">
-						<nav class="footer-nav">
-							<ul>
-								<a href="index.php" ><li>Inicio</li></a>
-								<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-								<a href="../html/terminos-y-condiciones.html" ><li>Terminos Y Condiciones</li></a>
-								<a href="../html/Privacidad.html"><li>Privacidad</li></a>
-								
-							</ul>
-						</nav>
-					</div>
-					<div class="column-3-3">
-						<div class="social-icons-footer">
-							<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-							<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-							<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-						</div>
+         <footer class="footer-outer">
+		<div class="container footer-inner">
+
+			<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
+				<div class="column-1-3">
+					<h1>Prest-AR</h1>
+				</div>
+				<div class="column-2-3">
+					<nav class="footer-nav">
+						<ul>
+							<li><a href="index.php">Inicio</a></li>
+							<li><a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;">Terminos Y Condiciones</a></li>
+							<li><a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;">Privacidad</a></li>
+							
+						</ul>
+					</nav>
+				</div>
+				<div class="column-3-3">
+					<div class="social-icons-footer">
+						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
 					</div>
 				</div>
-	
-				<span class="border-bottom-footer"></span>
-	
-				<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
-	
 			</div>
-		</footer>
+
+			<span class="border-bottom-footer"></span>
+
+			<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
+
+		</div>
+	</footer>
 
 
-
+        <script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/owl.carousel.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/main.js"></script>
 </body>
 </html>

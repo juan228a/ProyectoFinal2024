@@ -15,6 +15,12 @@
     border: none; /* Elimina cualquier borde */
 }
 
+/* Mostrar el menú cuando esté activo */
+.nav-item.dropdown.show .dropdown-menu {
+    display: block;
+}
+
+
 /* Borde inferior sutil para los elementos del menú */
 .nav-item .dropdown-menu li {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important; /* Borde sutil */
@@ -31,9 +37,33 @@
     color: #333;
     text-decoration: none;
     background-color: transparent !important; /* Fondo transparente */
+    transition: background-color 0.3s;
 }
 
 /* Efecto hover para opciones del menú */
 .nav-item .dropdown-menu a:hover {
     background-color: rgba(0, 0, 0, 0.1) !important; /* Fondo ligeramente oscuro en hover */
+}
+
+/* Asegurarte de que el menú no esté cubierto por otros elementos */
+.navbar-toggler {
+    z-index: 1050; /* Asegura que el botón de hamburguesa esté por encima */
+}
+
+.navbar-collapse {
+    z-index: 1049; /* Asegura que el menú colapsado tenga un buen orden */
+}
+
+.dropdown-menu {
+    z-index: 9999; /* Esto asegura que el dropdown siempre esté visible sobre otros elementos */
+}
+
+@media (max-width: 767px) {
+    .navbar-collapse {
+        position: relative;
+    }
+    .navbar-nav {
+        position: relative;
+    }
+
 }

@@ -1,28 +1,35 @@
 <?php
-// Iniciar la sesión
+// Iniciar sesión
 session_start();
 
 // Incluir archivo de conexión
 include 'conexion.php';
 
-// Inicializar variables para almacenar los datos del usuario
-$usuario = $nombre = $apellido = $email = $telefono = $provincia = $ciudad = $codigopostal = $dni = $descripcion = "";
-
-// Verificar si el usuario ha iniciado sesión
+// Verificar si el usuario ha iniciado sesión (solo para mostrar el botón de login o username)
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
+} else {
+    $username = "Log In/Sign Up";
+}
 
-    // Recuperar los datos del usuario de la base de datos
-    $sql = "SELECT usuario, nombre, apellido, email, telefono, provincia, ciudad, codigopostal, dni, descripcion FROM usuarios WHERE usuario = ?";
+// Inicializar variables
+$usuario = $nombre = $apellido = $email = $telefono = $provincia = $ciudad = $codigopostal = $dni = $descripcion = "";
+$ID = "";
+
+// Verificar si se recibe el ID del usuario a editar
+if (isset($_GET['ID'])) {
+    $ID = intval($_GET['ID']); // Convertir a entero para mayor seguridad
+
+    // Recuperar los datos del usuario con el ID proporcionado
+    $sql = "SELECT usuario, nombre, apellido, email, telefono, provincia, ciudad, codigopostal, dni, descripcion FROM usuarios WHERE ID = ?";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("i", $ID);
     $stmt->execute();
     $stmt->bind_result($usuario, $nombre, $apellido, $email, $telefono, $provincia, $ciudad, $codigopostal, $dni, $descripcion);
     $stmt->fetch();
     $stmt->close();
 } else {
-    // Si no ha iniciado sesión, redirigir a la página de login
-    header("Location: ../html/login.html");
+    echo "ID de usuario no proporcionado.";
     exit();
 }
 
@@ -54,10 +61,10 @@ $conexion->close();
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/dropdown.css">
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="../css/owl.carousel.css">
-	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="/css/animate.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -78,7 +85,7 @@ $conexion->close();
 	
 		<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="index.php">Prest-AR</a>
+			<a class="navbar-brand" href="">Prest-AR</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -86,7 +93,7 @@ $conexion->close();
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
@@ -96,7 +103,7 @@ $conexion->close();
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="../php/MisHerramientas.php">Mis Herramientas</a></li>
+        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
@@ -270,48 +277,39 @@ document.addEventListener('click', function(event) {
         <br>
         <br>
         <br>
-       
-	<!-- ==========================================================================================================
-                                               SECTION 7 - SUB FOOTER
-    ========================================================================================================== -->
-
-	<footer class="footer-outer">
-		<div class="container footer-inner">
-
-			<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
-				<div class="column-1-3">
-					<h1>Prest-AR</h1>
-				</div>
-				<div class="column-2-3">
-					<nav class="footer-nav">
-						<ul>
-							<a href="index.php"><li>Inicio</li></a>
-							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
-							
-						</ul>
-					</nav>
-				</div>
-				<div class="column-3-3">
-					<div class="social-icons-footer">
-						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-						<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-					</div>
-				</div>
-			</div>
-
-			<span class="border-bottom-footer"></span>
-
-			<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
-
-		</div>
-	</footer>
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/owl.carousel.js"></script>
-	<script src="../js/wow.min.js"></script>
-	<script src="../js/main.js"></script>
+        <footer class="footer-outer">
+            <div class="container footer-inner">
+    
+                <div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
+                    <div class="column-1-3">
+                        <h1>Prest-AR</h1>
+                    </div>
+                    <div class="column-2-3">
+                        <nav class="footer-nav">
+                            <ul>
+                                <a href="../index.html" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
+                                <!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
+                                <a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+                                <a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="column-3-3">
+                        <div class="social-icons-footer">
+                            <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+    
+                <span class="border-bottom-footer"></span>
+    
+                <p class="copyright">&copy; 2024 App. All rights reserved.</p>
+    
+            </div>
+        </footer>
+    
         </body>
         </html>

@@ -7,11 +7,19 @@ include 'conexion.php'; // Asegúrate de que el archivo de conexión a la base d
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    $username = "Log In";
+    $username = "Log In/Sign Up";
 }
 
-// Obtener todas las herramientas de la tabla 'herramientas'
-$sql_herramientas = "SELECT * FROM herramientas";
+// Obtener todas las herramientas de la categoría "electrodomésticos" que no están en el carrito
+$sql_herramientas = "
+    SELECT * 
+    FROM herramientas 
+    WHERE tipo_herramienta = 'Eléctrica' 
+    AND IDherramienta NOT IN (
+        SELECT IDherramienta 
+        FROM carrito
+    )
+";
 $resultado_herramientas = $conexion->query($sql_herramientas);
 
 if ($resultado_herramientas === false) {
@@ -23,6 +31,7 @@ $herramientas = $resultado_herramientas->fetch_all(MYSQLI_ASSOC);
 // Cerrar la conexión a la base de datos
 $conexion->close();
 ?>
+
 <!-- AQUI COMIENZA EL HEADER --> 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +66,7 @@ $conexion->close();
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/MisArticulos.css">
+	<link rel="stylesheet" href="../css/MisArticulosElectricos.css">
 
 </head>
 
@@ -87,7 +96,7 @@ $conexion->close();
 						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
 					</li>
                         <li class="nav-item dropdown">
-    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;">Log in /Sign Up</a>
+    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
@@ -107,23 +116,43 @@ $conexion->close();
     const dropdownMenu = document.querySelector('.dropdown-menu');
     const isVisible = dropdownMenu.style.display === 'block';
 
+    // Oculta todos los menús desplegables
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+
+    // Si el menú no estaba visible, lo mostramos
+    if (!isVisible) {
+        dropdownMenu.style.display = 'block';
+    }
+}
+
+// Cierra el dropdown si se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target.closest('.nav-item.dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+});
 </script>
 		</div>
     
 
         <!-- AQUI TERMINA EL HEADER -->
 
-
-<br>
-<br>
-
 	   </div>
    
 	 </div>
 
-    <br>
-	<br>
-	<br>
+
+
+     <h1 class="Titulo"><b>Eléctricas</b></h1>
+
+
+
+
 	<hr>
 	<div class="catalogo"> 
     <?php if (!empty($herramientas)): ?>
@@ -144,9 +173,9 @@ $conexion->close();
                 <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
                 
                 <!-- Formulario para alquilar -->
-                <form >
+                <form action="catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
                     <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
-					<a href="../html/logIn.html"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s">Alquilar</button></a>
+                    <button type="submit">Alquilar</button>
                 </form>
             </div>
         <?php endforeach; ?>

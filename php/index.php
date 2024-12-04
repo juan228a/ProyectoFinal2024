@@ -19,16 +19,7 @@ if (isset($_SESSION['username'])) {
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FreeHTML5.co" />
 
-	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+	
 
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="../css/bootstrap.css">
@@ -99,6 +90,7 @@ if (isset($_SESSION['username'])) {
     // Si el menú no estaba visible, lo mostramos
     if (!isVisible) {
         dropdownMenu.style.display = 'block';
+		dropdownMenu.style.zIndex = '9999';
     }
 }
 
@@ -119,8 +111,9 @@ document.addEventListener('click', function(event) {
 			<h1 class="animated fadeIn wow" data-wow-delay="0.4s">Herramientas a tu Alcance: Alquila Fácilmente y Sin Complicaciones</h1>
 			<p class="animated fadeIn wow" data-wow-delay="0.67s">¡Haz realidad tus proyectos con las herramientas adecuadas! </p>
 			<!-- <a href="Catalogo.php"><button class="btn btn-md download-btn-first wow fadeInLeft animated" data-wow-delay="0.85s" onclick="$().goTo();return false;">Alquilar</button></a> -->
-			<a href="MisArticulos.php"><button  class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s">Alquilar</button>
-			
+			<a href="MisArticulos.php">
+				<button  class="btn btn-md features-btn-first animated fadeInLeft wow" data-wow-delay="0.95s">Alquilar</button>
+			</a>
 		</div>
 
 
@@ -151,7 +144,7 @@ document.addEventListener('click', function(event) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 
 
 	<!-- ==========================================================================================================

@@ -28,7 +28,7 @@ if ($IDherramienta) {
 
         // Consultar el nombre del propietario de la herramienta
         $IDusuario = $herramienta['IDusuario'];
-        $sql_usuario = "SELECT nombre FROM usuarios WHERE ID = ?";
+        $sql_usuario = "SELECT nombre, email FROM usuarios WHERE ID = ?";
         if ($stmt_usuario = $conexion->prepare($sql_usuario)) {
             $stmt_usuario->bind_param("i", $IDusuario);
             $stmt_usuario->execute();
@@ -36,7 +36,8 @@ if ($IDherramienta) {
             $usuario = $resultado_usuario->fetch_assoc();
             
             // Si el usuario existe, mostramos su nombre, si no, mostramos un mensaje de propietario desconocido
-            $nombre_usuario = $usuario ? $usuario['nombre'] : 'Propietario desconocido';
+			$nombre_usuario = $usuario ? $usuario['nombre'] : 'Propietario desconocido';
+			$email_propietario = $usuario ? $usuario['email'] : 'Email desconocido';
         } else {
             // Error al preparar la consulta del usuario
             echo "Error en la consulta del propietario: " . $conexion->error;
@@ -126,7 +127,7 @@ $conexion->close();
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
+        <li><a href="../php/MisHerramientas.php">Mis Herramientas</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
@@ -228,6 +229,178 @@ document.addEventListener('click', function(event) {
 			.infobox button:hover {
 				background-color: #2980b9;
 			}
+			
+.footer-outer {
+    width: 100%;
+    padding: 50px;
+    height: 150px;
+    background: #2e3149;
+    overflow: hidden;
+  }
+  .footer-outer .footer-inner {
+    width: 100%;
+    height: inherit;
+  }
+  .footer-outer .social-icons-footer i {
+    margin: 15px;
+    font-size: 20px;
+  }
+  .footer-outer .social-icons-footer a:hover i {
+    opacity: .6;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    transition: all .2s ease;
+  }
+  .footer-outer .footer-three-grid {
+    width: 1140px;
+    margin: 0 auto;
+    height: 50px;
+    text-align: center;
+  }
+  .footer-outer .column-1-3 {
+    width: 20%;
+    float: left;
+    height: 50px;
+  }
+  .footer-outer .column-1-3 h1 {
+    font-size: 38px;
+    letter-spacing: 3px;
+    position: relative;
+    top: -5px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .footer-outer .column-2-3 {
+    width: 60%;
+    float: left;
+    height: 50px;
+  }
+  .footer-outer .column-3-3 {
+    width: 20%;
+    float: left;
+    height: 20px;
+  }
+  .footer-outer .column-3-3 a {
+    color: #b5b5c8;
+  }
+  .footer-outer .column-3-3 .social-icons-header a:hover {
+    color: #fff;
+    opacity: 1;
+    -webkit-transition: color .2s ease;
+    -o-transition: color .2s ease;
+    transition: color .2s ease;
+  }
+  .footer-outer .footer-nav ul {
+    list-style: none;
+    text-align: center;
+  }
+  .footer-outer .footer-nav ul li {
+    display: inline-block;
+    line-height: 50px;
+    color: #b5b5c8;
+    margin: 0 30px;
+    font-size: 14px;
+  }
+  .footer-outer .footer-nav ul li:hover {
+    color: #fff;
+    -webkit-transition: color .2s ease-in-out;
+    -o-transition: color .2s ease-in-out;
+    transition: color .2s ease-in-out;
+  }
+  .footer-outer .footer-nav ul .active {
+    color: #fff;
+  }
+  .footer-outer .footer-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .footer-outer .border-bottom-footer {
+    height: 1px;
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid #434769;
+    display: block;
+    margin-top: 50px;
+  }
+  .footer-outer .copyright {
+    color: #565b87;
+    text-align: center;
+    font-size: 13px;
+    padding: 40px 0;
+  }
+  
+  .google-play-btn {
+    margin-left: 10px;
+  }
+  
+
+/* ==========================================================================================================
+                                       RESPONSIVE STYLING
+  ========================================================================================================== */
+  
+  @media screen and (max-width: 1400px) {
+   
+    .footer-outer .footer-three-grid {
+      width: 100%;
+    }
+
+  }
+
+  @media screen and (max-width: 993px) {
+
+    .footer-outer .footer-nav ul li {
+      margin: 0 10px;
+    }
+  
+    .footer-outer .social-icons-footer i {
+      margin: 15px 10px;
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    
+    .footer-outer {
+      height: auto;
+      padding: 20px;
+    }
+  
+    .footer-outer .column-1-3 {
+      width: 100%;
+      float: none;
+      height: auto;
+      padding-top: 30px;
+    }
+  
+    .footer-outer .column-2-3 {
+      width: 100%;
+      float: none;
+      height: auto;
+    }
+  
+    .footer-outer .column-3-3 {
+      width: 100%;
+      float: left;
+      height: auto;
+      margin: 15px 0;
+    }
+  
+    .footer-outer .copyright {
+      margin-top: 30px;
+      padding: 10px 0;
+    }
+  
+    .footer-outer .border-bottom-footer {
+      height: 1px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid #434769;
+      display: block;
+      margin-top: 100px;
+    }
+  }
 		</style>
 		</div>
     
@@ -255,7 +428,7 @@ document.addEventListener('click', function(event) {
 		<p><b>Marca:</b> <?php echo htmlspecialchars($herramienta['marca_herramienta']); ?></p>
         
         <p><b>Propietario:</b> <?php echo htmlspecialchars($nombre_usuario); ?></p>
-        
+        <p><b>Email propietario:</b> <?php echo htmlspecialchars($email_propietario); ?></p>
         <p><b>Precio por Hora:</b> $<?php echo htmlspecialchars($herramienta['precio_hora']); ?></p>
         <p><b>Precio por Día:</b> $<?php echo htmlspecialchars($herramienta['precio_dia']); ?></p>
         <p><b>Precio por Semana:</b> $<?php echo htmlspecialchars($herramienta['precio_semana']); ?></p>
@@ -328,11 +501,11 @@ document.addEventListener('click', function(event) {
 			</footer>
 
 
-			<script src="js/jquery.min.js"></script>
-			<script src="js/bootstrap.js"></script>
-			<script src="js/owl.carousel.js"></script>
-			<script src="js/wow.min.js"></script>
-			<script src="js/main.js"></script>
+			<script src="../js/jquery.min.js"></script>
+			<script src="../js/bootstrap.js"></script>
+			<script src="../js/owl.carousel.js"></script>
+			<script src="../js/wow.min.js"></script>
+			<script src="../js/main.js"></script>
 
 			<script>
 				// Arreglo de URLs de las imágenes
@@ -387,107 +560,4 @@ document.addEventListener('click', function(event) {
 		</body>
 	
 		</html>
-		<?php
-
-/*session_start();
-include 'conexion.php';
-require 'C:/xampp/htdocs/app/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require 'C:/xampp/htdocs/app/vendor/phpmailer/phpmailer/src/SMTP.php';
-require 'C:/xampp/htdocs/app/vendor/phpmailer/phpmailer/src/Exception.php';
-
-
-
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-$nombre = $apellido = $email = $telefono = $provincia = $ciudad = $descripcion = "";
-
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-
-    $sql = "SELECT nombre, apellido, email, telefono FROM usuarios WHERE usuario = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->bind_result($nombre, $apellido, $email, $telefono);
-    $stmt->fetch();
-    $stmt->close();
-} else {
-    header("Location: ../html/login.html");
-    exit();
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $telefono = $_POST['telefono'];
-    $direccion = $_POST['direccion'];
-    $horas = $_POST['horas'];
-    $experiencia = $_POST['experiencia'];
-    $informacion = $_POST['informacion'];
-    $date = $_POST['reservation-date'];
-    $time = $_POST['reservation-time'];
-    $email_destinatario = $email;
-
-    $subject = "Confirmación de Reserva - Prest-AR";
-    $message = "
-    <html>
-    <body>
-        <h2>Detalles de la Reserva</h2>
-        <p><strong>Nombre:</strong> $nombre $apellido</p>
-        <p><strong>Teléfono:</strong> $telefono</p>
-        <p><strong>Dirección:</strong> $direccion</p>
-        <p><strong>Horas a alquilar:</strong> $horas</p>
-        <p><strong>Experiencia con la herramienta:</strong> $experiencia</p>
-        <p><strong>Fecha de reserva:</strong> $date</p>
-        <p><strong>Hora de reserva:</strong> $time</p>
-    </body>
-    </html>
-    ";
-
-    $mail = new PHPMailer(true);
-
-    try {
-
-
-     
-
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'prestar2024@gmail.com'; // Cambia a tu correo
-        $mail->Password = 'o c p i g s d v t fa e d z h p'; // Cambia a tu contraseña o token de aplicación
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-
-        $mail->setFrom('prestar2024@gmail.com', 'Prest-AR');
-        $mail->addAddress($email_destinatario);
-
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body = $message;
-
-        $mail->send();
-        echo "Correo enviado exitosamente.";
-    } catch (Exception $e) {
-        echo "Error al enviar el correo: {$mail->ErrorInfo}";
-    }
-}
-
-// Preparar la consulta para insertar en la tabla carrito
-$sql = "INSERT INTO carrito (usuario, nombre, apellido, email, telefono, direccion, horas, experiencia, informacion, fecha_reserva, hora_reserva, fecha_creacion) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-
-$stmt = $conexion->prepare($sql);
-$stmt->bind_param("sssssssssss", $username, $nombre, $apellido, $email, $telefono, $direccion, $horas, $experiencia, $informacion, $date, $time);
-
-if ($stmt->execute()) {
-    ;
-} else {
-     $conexion->error;
-}
-
-$stmt->close();
-
-$conexion->close();*/
-?>
-
+		

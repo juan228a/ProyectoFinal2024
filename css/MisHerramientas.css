@@ -47,10 +47,11 @@ html {
   font-size: 38px;
   letter-spacing: 4px;
   position: relative;
-  top: -5px;
+  top: 15px;
   font-weight: 500;
  
 }
+
 
 .main-navbar-nav {
   color: #fff !important;
@@ -96,7 +97,15 @@ html {
   transition: all .2s ease;
 }
 /* HASTA AQUI TERMINA EL HEADER */
-
+#tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px; /* Limita el ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenedor en la pantalla */
+}
 
   .tool-card {
     border: 1px solid #ccc;
@@ -259,6 +268,21 @@ html {
     margin: 0 30px;
     font-size: 14px;
   }
+  .footer-nav ul {
+    list-style: none;
+    display: flex; /* Flexbox para alinear elementos horizontalmente */
+    justify-content: center; /* Centrar los elementos horizontalmente */
+    gap: 20px; /* Espaciado entre los elementos */
+    padding: 0; /* Quitar el padding por defecto */
+    margin: 0; /* Quitar el margen por defecto */
+}
+
+.footer-nav ul li {
+    line-height: 50px; /* Mantener el mismo diseño */
+    font-size: 14px;
+}
+
+
   .footer-outer .footer-nav ul li:hover {
     color: #fff;
     -webkit-transition: color .2s ease-in-out;
@@ -291,3 +315,102 @@ html {
     margin-left: 10px;
   }
   
+ 
+  /* ==========================================================================================================
+                                       RESPONSIVE STYLING
+  ========================================================================================================== */
+  
+  @media screen and (max-width: 1400px) {
+   
+    .footer-outer .footer-three-grid {
+      width: 100%;
+    }
+
+  }
+
+  @media screen and (max-width: 993px) {
+
+    .footer-outer .footer-nav ul li {
+      margin: 0 10px;
+    }
+  
+    .footer-outer .social-icons-footer i {
+      margin: 15px 10px;
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    
+    .footer-outer {
+      height: auto;
+      padding: 20px;
+    }
+  
+    .footer-outer .column-1-3 {
+      width: 100%;
+      float: none;
+      height: auto;
+      padding-top: 30px;
+    }
+  
+    .footer-outer .column-2-3 {
+      width: 100%;
+      float: none;
+      height: auto;
+    }
+  
+    .footer-outer .column-3-3 {
+      width: 100%;
+      float: left;
+      height: auto;
+      margin: 15px 0;
+    }
+  
+    .footer-outer .copyright {
+      margin-top: 30px;
+      padding: 10px 0;
+    }
+  
+    .footer-outer .border-bottom-footer {
+      height: 1px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid #434769;
+      display: block;
+      margin-top: 100px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .tool-card {
+      width: 100%; /* Full width for small screens */
+      max-width: 100%; /* Ensures full width */
+    }
+  
+    .tool-actions {
+      flex-direction: column; /* Stack buttons vertically on small screens */
+      align-items: center;
+    }
+  
+    .tool-actions button {
+      width: 100%; /* Make buttons take full width on small screens */
+      margin: 5px 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    #fh5co-hero-wrapper {
+      height: 150px; /* Adjust hero section height for small screens */
+    }
+  
+    .main-navbar-nav .nav-link {
+      margin: 0 20px;
+      font-size: 12px; /* Reduce font size for smaller screens */
+    }
+  
+    .tool-card img {
+      width: 80px; /* Reduce image size on smaller screens */
+      height: 80px;
+    }
+  }

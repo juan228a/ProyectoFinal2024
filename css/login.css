@@ -195,28 +195,105 @@ button:hover {
 }
 
 @media (max-width: 468px) {
+  .container {
+    padding: 10px;
+  }
+
+  .info-section {
+    display: none; /* Ocultar la sección de información en pantallas muy pequeñas */
+  }
+
+  .wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 20px 15px;
+    border-radius: 15px;
+  }
+
   .info-section h1 {
-    font-size: 36px;
+    font-size: 28px;
   }
 
-  .info-section p {
-    font-size: 16px;
-  }
-
-  h2 {
-    font-size: 24px;
+  .input-group {
+    margin: 20px 0;
   }
 
   .input-group input {
+    font-size: 14px;
     height: 35px;
   }
 
   .input-group label {
-    font-size: 14px;
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
   }
 
   button {
-    height: 35px;
+    height: 40px;
     font-size: 14px;
+  }
+
+  .remember {
+    font-size: 12px;
+  }
+
+  .signUp-link {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    padding: 10px;
+  }
+
+  .info-section {
+    display: none; /* Ocultar la sección de información en pantallas muy pequeñas */
+  }
+
+  .wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 20px 15px;
+    border-radius: 15px;
+  }
+
+  .info-section h1 {
+    font-size: 28px;
+  }
+
+  .input-group {
+    margin: 20px 0;
+  }
+
+  .input-group input {
+    font-size: 14px;
+    height: 35px;
+  }
+
+  .input-group label {
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .remember {
+    font-size: 12px;
+  }
+
+  .signUp-link {
+    font-size: 12px;
   }
 }

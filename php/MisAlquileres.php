@@ -89,6 +89,7 @@ if (isset($_SESSION['username'])) {
 		/* Estilo específico para las herramientas alquiladas */
 		.alquiler-card {
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: space-between;
 			align-items: center;
 			background-color: #fff;
@@ -108,6 +109,8 @@ if (isset($_SESSION['username'])) {
 		.alquiler-details {
 			flex: 1;
 			margin-left: 20px;
+			width: 100%;
+    margin-top: 10px;
 		}
 
 		.alquiler-details h5 {
@@ -125,6 +128,8 @@ if (isset($_SESSION['username'])) {
 			flex-direction: column;
 			justify-content: center;
 			align-items: flex-end;
+			width: 100%;
+    margin-top: 10px;
 		}
 
 		.alquiler-actions button {
@@ -142,6 +147,24 @@ if (isset($_SESSION['username'])) {
 		.alquiler-actions button:hover {
 			background-color: #2980b9;
 		}
+
+
+		@media (min-width: 576px) {
+    .alquiler-details, .alquiler-actions {
+        width: auto;
+        margin-top: 0;
+    }
+
+	@media (max-width: 576px) {
+    .alquiler-card {
+        padding: 10px;
+    }
+
+    .alquiler-actions button {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+}
 	</style>
 </head>
 

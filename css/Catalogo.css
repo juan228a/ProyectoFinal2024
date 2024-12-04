@@ -1,8 +1,4 @@
-/*
-	App by FreeHTML5.co
-	Twitter: http://twitter.com/fh5co
-	URL: http://freehtml5.co
-*/
+
 @import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800");
 * {
   margin: 0px;
@@ -607,4 +603,49 @@ img {
 
 .google-play-btn {
   margin-left: 10px;
+}
+
+
+/* Media Queries para Responsividad */
+@media screen and (max-width: 768px) {
+  .carousel-container {
+    padding: 0 20px;
+  }
+
+  .prev, .next {
+    width: 40px;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .reservation-form {
+    padding: 15px;
+    max-width: 95%;
+    margin: 0 10px;
+  }
+
+  .infobox {
+    width: 95%;
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .prev, .next {
+    width: 30px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .reservation-form input,
+  .reservation-form button {
+    font-size: 14px;
+  }
+
+  .infobox {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+  }
 }

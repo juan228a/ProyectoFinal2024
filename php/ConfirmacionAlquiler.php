@@ -27,10 +27,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $IDherramienta = $_POST['IDherramienta'];
     $date = $_POST['fecha_reserva'];
     $time = $_POST['hora_reserva'];
+
+    // Consultar el email del propietario de la herramienta
+    $sql_propietario = "
+        SELECT usuarios.email 
+        FROM usuarios 
+        INNER JOIN herramientas ON usuarios.ID = herramientas.IDusuario 
+        WHERE herramientas.IDherramienta = ?";
+    $stmt_propietario = $conexion->prepare($sql_propietario);
+    $stmt_propietario->bind_param("i", $IDherramienta);
+    $stmt_propietario->execute();
+    $stmt_propietario->bind_result($propietario_email);
+    $stmt_propietario->fetch();
+    $stmt_propietario->close();
+
+    // Consultar el nombre de la herramienta
+    $sql_herramienta = "SELECT nombreherramienta FROM herramientas WHERE IDherramienta = ?";
+    $stmt_herramienta = $conexion->prepare($sql_herramienta);
+    $stmt_herramienta->bind_param("i", $IDherramienta);
+    $stmt_herramienta->execute();
+    $stmt_herramienta->bind_result($nombre_herramienta);
+    $stmt_herramienta->fetch();
+    $stmt_herramienta->close();
+
 } else {
     echo "No se recibieron datos del formulario.";
     exit();
 }
+
+
 ?>
 
 
@@ -42,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Prest-AR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/ConfirmacionAlquiler.css">
 </head>
 <body>
@@ -71,6 +96,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required value="<?php echo $email ?>" readonly>
 
+            <label for="propietario_email">Email del propietario:</label>
+            <input type="email" id="propietario_email" name="propietario_email" required value="<?php echo $propietario_email ?>" readonly>
+
+            <label for="nombre_herramienta">Nombre de la herramienta:</label>
+            <input type="text" id="nombre_herramienta" name="nombre_herramienta" required value="<?php echo $nombre_herramienta ?>" readonly>
+
             <label for="telefono">Teléfono:</label>
             <input type="tel" id="telefono" name="telefono" required>
 
@@ -86,8 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Baja">Baja</option>
              <option value="Media">Media</option>
              <option value="Alta">Alta</option>
-
-
+             
             </select>
 
             <label for="informacion">Información extra que desee añadir:</label>
@@ -113,9 +143,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<br><br><br><br>
 	<footer class="footer-outer">
-		<p class="copyright">&copy; 2024 App. All rights reserved.</p>
-	</footer>
+		<div class="container footer-inner">
 
+			<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
+				<div class="column-1-3">
+					<h1>Prest-AR</h1>
+				</div>
+				<div class="column-2-3">
+					<nav class="footer-nav">
+						<ul>
+							<a href="index.php"><li>Inicio</li></a>
+							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
+							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+							
+						</ul>
+					</nav>
+				</div>
+				<div class="column-3-3">
+					<div class="social-icons-footer">
+						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+					</div>
+				</div>
+			</div>
+
+			<span class="border-bottom-footer"></span>
+
+			<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
+
+		</div>
+	</footer>
 </div>
 </body>
 </html>

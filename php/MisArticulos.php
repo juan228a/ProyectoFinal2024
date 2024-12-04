@@ -7,10 +7,10 @@ include 'conexion.php'; // Asegúrate de que el archivo de conexión a la base d
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
-    $username = "Log In";
+    $username = "Log In/Sign Up";
 }
 
-// Obtener todas las herramientas que no están en el carrito
+// Obtener todas las herramientas de la categoría "electrodomésticos" que no están en el carrito
 $sql_herramientas = "
     SELECT * 
     FROM herramientas 
@@ -98,7 +98,7 @@ $conexion->close();
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
+        <li><a href="MisHerramientas.php">Mis Herramientas</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
@@ -148,8 +148,26 @@ document.addEventListener('click', function(event) {
    
 	 </div>
 
-    <br>
-	<br>
+	 <div class="main-container">
+    <div class="button-container">
+        <div class="text-center">
+            <a href="MisArticulosElectricos.php"><button type="submit" class="btn btn-secondary custom-button">Electricas</button>
+			</a></div>
+        </div>
+
+        <div class="button-container2">
+        <div class="text-center">
+           <a href="MisArticulos.php"><button type="submit" class="btn btn-secondary custom-button">Todas las herramientas</button></a> 
+        </div>
+        </div>
+
+        <div class="button-container3">
+        <div class="text-center">
+           <a href="MisArticulosManuales.php"><button type="submit" class="btn btn-secondary custom-button">Manuales</button></a> 
+        </div>
+    </div>
+    </div>
+	
 	<br>
 	<hr>
 	<div class="catalogo"> 
@@ -160,9 +178,13 @@ document.addEventListener('click', function(event) {
                 <img class="imagen-herramienta" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
                 
                 <!-- Mostrar el nombre de la herramienta -->
-                <h2><?php echo $herramienta['nombreherramienta']; ?></h2>
+                <h1><?php echo $herramienta['nombreherramienta']; ?></h1>
                 
+				<h5><p><b>Marca:</b></p><?php echo $herramienta['marca_herramienta']; ?></h5>
+
+
                 <!-- Mostrar la descripción de la herramienta -->
+				 <p><b>Descripción:</b></p>
                 <p><?php echo $herramienta['descripcion']; ?></p>
                 
                 <!-- Mostrar los precios (hora, día, semana) -->
@@ -241,7 +263,11 @@ document.addEventListener('click', function(event) {
 			</footer>
 
 			<script src="../js/mainjs.js"></script>
-
+			<script src="../js/main.js"></script>
+			<script src="../js/jquery.min.js"></script>
+			<script src="../js/bootstrap.js"></script>
+			<script src="../js/owl.carousel.js"></script>
+			<script src="../js/wow.min.js"></script>
 			</body>
 
             </html>
