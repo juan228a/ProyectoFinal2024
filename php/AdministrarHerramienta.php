@@ -8,18 +8,27 @@ if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 }
 
-// Obtener todos los usuarios excepto el usuario con ID = 1
-$sql_herramientas = "SELECT IDherramienta, nombreherramienta, descripcion, imagenes FROM herramientas";
+// Obtener todas las herramientas excepto las que ya están en el carrito
+$sql_herramientas = "
+    SELECT IDherramienta, nombreherramienta, descripcion, imagenes 
+    FROM herramientas
+    WHERE IDherramienta NOT IN (
+        SELECT IDherramienta 
+        FROM carrito
+    )
+";
+
 $resultado = $conexion->query($sql_herramientas);
 
 if ($resultado === false) {
-    die("Error en la consulta de usuarios: " . $conexion->error);
+    die("Error en la consulta de herramientas: " . $conexion->error);
 }
 
-$usuarios = $resultado->fetch_all(MYSQLI_ASSOC);
+$herramientas = $resultado->fetch_all(MYSQLI_ASSOC);
 
 // Cerrar la conexión a la base de datos
 $conexion->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,47 +145,39 @@ $conexion->close();
 	<!-- HEADER -->
 	<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="index.php">Prest-AR</a>
+			<a class="navbar-brand" href="#">Prest-AR</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="index.php">Inicio</a>
-					</li>
+					
 					<li class="nav-item">
-						<a class="nav-link" href="add_herramienta.php">Subir Herramienta</a>
+						<a class="nav-link" href="AdministrarPerfiles.php">Administrar Usuario</a>
 					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
-						<ul class="dropdown-menu">
-							<li><a href="AdministrarPerfiles.php">Editar Usuarios</a></li>
-							<li><a href="MisAlquileres.php">Mis Alquileres</a></li>
-							<li><a href="MisHerramientas.php">Mis Herramientas</a></li>
-							<li><a href="cerrarsesion.php">Cerrar sesión</a></li>
-						</ul>
+					<li>
+						<a class="nav-link" href="cerrarsesion.php">Cerrar sesión</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 
-	<!-- SECCIÓN DE ADMINISTRACIÓN DE USUARIOS -->
+	<!-- SECCIÓN DE ADMINISTRACIÓN DE Herramientas -->
 	<br>
-	<h1 style="text-align: center;">Panel de Administración de Herramientas</h1>
+	<h1 style="text-align: center;">Panel de Administración de herramientas</h1>
 	<br>
 
 	<div class="container">
     <?php foreach ($herramientas as $herramienta): ?>
-        <div class="tool-card">
-            <img src="<?php echo htmlspecialchars($herramienta['imagenes']); ?>" alt="Imagen de <?php echo htmlspecialchars($herramienta['nombreherramienta']); ?>" style="max-width: 150px; max-height: 100px;">
-            <div class="tool-details">
+        <div class="user-card">
+            <img src="<?php echo htmlspecialchars($herramienta['imagenes']); ?>" alt="Imagen del <?php echo htmlspecialchars($herramienta['nombreherramienta']); ?>" style="max-width: 150px; max-height: 100px;">
+            <div class="user-details">
                 <p><strong>Nombre de la herramienta:</strong> <?php echo htmlspecialchars($herramienta['nombreherramienta']); ?></p>
                 <p><strong>Descripción:</strong> <?php echo htmlspecialchars($herramienta['descripcion']); ?></p>
             </div>
-            <div class="tool-actions">
-                <a href="editar_herramienta.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>">Editar Herramienta</a>
+            <div class="user-actions">
+                <a href="EditarHerramienta.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>">Editar Herramienta</a>
                 <form method="POST" action="eliminar_herramienta.php" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta herramienta?');">
                     <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
                     <button type="submit" class="btn btn-danger">Eliminar Herramienta</button>
@@ -195,13 +196,7 @@ $conexion->close();
 					<h1>Prest-AR</h1>
 				</div>
 				<div class="column-2-3">
-					<nav class="footer-nav">
-						<ul>
-							<a href="index.php"><li>Inicio</li></a>
-							<a href="../html/terminos-y-condiciones.html"><li>Terminos Y Condiciones</li></a>
-							<a href="../html/Privacidad.html"><li>Privacidad</li></a>
-						</ul>
-					</nav>
+				
 				</div>
 				<div class="column-3-3">
 					<div class="social-icons-footer">

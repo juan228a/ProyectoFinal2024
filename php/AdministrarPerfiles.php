@@ -136,26 +136,19 @@ $conexion->close();
 	<!-- HEADER -->
 	<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="index.php">Prest-AR</a>
+			<a class="navbar-brand" href="#">Prest-AR</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="index.php">Inicio</a>
-					</li>
+					
 					<li class="nav-item">
-						<a class="nav-link" href="add_herramienta.php">Subir Herramienta</a>
+						<a class="nav-link" href="AdministrarHerramienta.php">Administrar Herramientas</a>
 					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
-						<ul class="dropdown-menu">
-							<li><a href="AdministrarPerfiles.php">Editar Usuarios</a></li>
-							<li><a href="MisAlquileres.php">Mis Alquileres</a></li>
-							<li><a href="MisHerramientas.php">Mis Herramientas</a></li>
-							<li><a href="cerrarsesion.php">Cerrar sesión</a></li>
-						</ul>
+					
+					<li>
+						<a class="nav-link" href="cerrarsesion.php">Cerrar sesión</a>
 					</li>
 				</ul>
 			</div>
@@ -198,15 +191,7 @@ $conexion->close();
 				<div class="column-1-3">
 					<h1>Prest-AR</h1>
 				</div>
-				<div class="column-2-3">
-					<nav class="footer-nav">
-						<ul>
-							<a href="index.php"><li>Inicio</li></a>
-							<a href="../html/terminos-y-condiciones.html"><li>Terminos Y Condiciones</li></a>
-							<a href="../html/Privacidad.html"><li>Privacidad</li></a>
-						</ul>
-					</nav>
-				</div>
+				
 				<div class="column-3-3">
 					<div class="social-icons-footer">
 						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>

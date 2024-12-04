@@ -57,3 +57,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['ID'])) {
 
 
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de la Actualización</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <script>
+        // Redirigir a editoruser.php después de 3 segundos
+        setTimeout(function(){
+            window.location.href = 'AdministrarPerfiles.php';
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-wrapper sign-in">
+            <h2>Usuario eliminado con exito!</h2>
+        </div>
+    </div>
+</body>
+</html>

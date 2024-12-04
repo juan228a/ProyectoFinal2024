@@ -169,7 +169,7 @@ html {
 			font-size: 1em;
 			transition: background-color 0.3s ease;
 			margin-top: 10px;
-      margin-bottom: 8px;
+			margin-bottom: 8px;
 		}
 
 		.infobox button:hover {
@@ -268,36 +268,23 @@ html {
     cursor: pointer;
 }
 
+
 .main-container {
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 20px; /* Espacio entre botones */
+  display: flex; /* Organiza los contenedores en fila */
+  justify-content: center; /* Centra los contenedores horizontalmente */
+  gap: 400px; /* Espacio entre los contenedores */
 }
 
 .button-container {
   display: flex;
   justify-content: center; /* Centra los botones horizontalmente */
   color: black;
-  width: 100%; /* Los botones ocupan todo el ancho */
-  max-width: 300px; /* Máximo ancho en pantallas grandes */
-}
   
-
+}
 
 .custom-button {
-  width: 100%; /* Botones adaptables al contenedor */
-  padding: 15px;
-  font-size: 16px;
-  background-color: #234197;
-  color: white;
+  color: white; /* Cambia el azul por rojo o cualquier color */
   border: none;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .custom-button:hover {
@@ -312,28 +299,75 @@ html {
   display: flex;
   justify-content: center; /* Centra los botones horizontalmente */
   color: black;
-  width: 100%; /* Los botones ocupan todo el ancho */
-  max-width: 300px; /* Máximo ancho en pantallas grandes */
-}
   
-
+}
 
 .button-container3 {
   display: flex;
   justify-content: center; /* Centra los botones horizontalmente */
   color: black;
-  width: 100%; /* Los botones ocupan todo el ancho */
-  max-width: 300px; /* Máximo ancho en pantallas grandes */
-}
   
-
+}
 
 .btn-secondary {
-  border-width: 4px; /* Grosor del borde */
+  border-width: 1px; /* Grosor del borde */
   background-color: gray; /* Color de fondo */
   color: white; /* Color del texto */
   padding: 15px 60px;
 }
+
+
+
+.content-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.hidden-content {
+  display: none; /* Oculta el contenido inicialmente */
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.toggle-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.hidden-content {
+  display: none; /* Oculto inicialmente */
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.toggle-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.infobox {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.precio {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
 
 
 
@@ -459,9 +493,14 @@ html {
                 width: 100%; /* Ajustar ancho de imagen al contenedor */
                 height: 250px; /* Altura un poco más pequeña */
             }
+            .main-container {
+              flex-direction: column; /* Los contenedores se apilan verticalmente */
+              gap: 20px; /* Reduce el espacio entre contenedores */
+            }
             .custom-button {
+              padding: 10px 30px; /* Botones más pequeños en pantallas pequeñas */
               font-size: 14px;
-              padding: 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -491,9 +530,9 @@ html {
                 padding: 10px 15px;
                 font-size: 0.9em;
             }
+
             .custom-button {
-              font-size: 12px;
-              padding: 10px;
-          }
+              padding: 8px 20px; /* Aún más pequeño en pantallas muy pequeñas */
+              font-size: 15px;
+            }
         }
-      }

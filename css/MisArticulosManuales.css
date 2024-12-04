@@ -270,9 +270,68 @@ html {
 
 
 
+.main-container {
+  display: flex; /* Activa flexbox */
+  justify-content: center; /* Centra los botones horizontalmente */
+  gap: 400px; /* Espaciado entre botones */
+  margin: 20px 0; /* Margen opcional */
+}
+
+.text-center {
+  text-align: center; /* Asegura que el texto esté centrado */
+}
+
+.custom-button {
+  padding: 15px 60px;
+  font-size: 16px;
+}
+
+.custom-button:hover {
+  background-color: black; /* Cambia el fondo al pasar el cursor */
+}
+
+.btn-secondary {
+  border-width: 1px; /* Grosor del borde */
+  background-color: gray; /* Color de fondo */
+  color: white; /* Color del texto */
+  padding: 15px 60px;
+}
+
+
+.content-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.hidden-content {
+  display: none; /* Oculta el contenido inicialmente */
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.toggle-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
 
 
+.infobox {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.precio {
+  margin: 5px 0;
+  font-weight: bold;
+}
 
 
 
@@ -384,3 +443,64 @@ html {
             margin-left: 10px;
           }
           
+
+
+           
+          @media (max-width: 768px) {
+            .catalogo {
+                margin: 20px 10px; /* Reducir márgenes en pantallas pequeñas */
+                gap: 15px;
+            }
+        
+            .infobox {
+                width: calc(50% - 20px); /* Dos columnas en pantallas medianas */
+                margin: 10px 5px;
+            }
+        
+            .infobox img {
+                width: 100%; /* Ajustar ancho de imagen al contenedor */
+                height: 250px; /* Altura un poco más pequeña */
+            }
+            .main-container {
+              flex-direction: column; /* Los contenedores se apilan verticalmente */
+              gap: 20px; /* Reduce el espacio entre contenedores */
+            }
+            .custom-button {
+              padding: 10px 30px; /* Botones más pequeños en pantallas pequeñas */
+              font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .catalogo {
+                margin: 10px 5px;
+                gap: 10px;
+            }
+        
+            .infobox {
+                width: 100%; /* Una columna en pantallas muy pequeñas */
+                margin: 10px 0;
+            }
+        
+            .infobox img {
+                height: 200px; /* Reducir aún más la altura */
+            }
+        
+            .infobox h2 {
+                font-size: 1.1em;
+            }
+        
+            .infobox p, .infobox .precio {
+                font-size: 0.9em;
+            }
+        
+            .infobox button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .custom-button {
+              padding: 8px 20px; /* Aún más pequeño en pantallas muy pequeñas */
+              font-size: 15px;
+            }
+        }

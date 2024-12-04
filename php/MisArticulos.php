@@ -12,7 +12,7 @@ if (isset($_SESSION['username'])) {
 
 // Obtener todas las herramientas de la categoría "electrodomésticos" que no están en el carrito
 $sql_herramientas = "
-    SELECT * 
+     SELECT * 
     FROM herramientas 
     WHERE IDherramienta NOT IN (
         SELECT IDherramienta 
@@ -56,10 +56,10 @@ $conexion->close();
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/dropdown.css">
 	<!-- Owl Carousel  -->
-	<link rel="stylesheet" href="/css/owl.carousel.css">
-	<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="../css/owl.carousel.css">
+	<link rel="stylesheet" href="../css/owl.theme.default.min.css">
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="/css/animate.css">
+	<link rel="stylesheet" href="../css/animate.css">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -143,36 +143,28 @@ document.addEventListener('click', function(event) {
 
 <br>
 <br>
-
-	   </div>
-   
-	 </div>
-
-	 <div class="main-container">
+<div class="main-container">
     <div class="button-container">
-        <div class="text-center">
+   <div class="text-center">
             <a href="MisArticulosElectricos.php"><button type="submit" class="btn btn-secondary custom-button">Electricas</button>
 			</a></div>
         </div>
-
-        <div class="button-container2">
-        <div class="text-center">
-           <a href="MisArticulos.php"><button type="submit" class="btn btn-secondary custom-button">Todas las herramientas</button></a> 
-        </div>
-        </div>
-
+		
         <div class="button-container3">
         <div class="text-center">
            <a href="MisArticulosManuales.php"><button type="submit" class="btn btn-secondary custom-button">Manuales</button></a> 
         </div>
     </div>
     </div>
-	
+
 	<br>
+	<br>
+
 	<hr>
-	<div class="catalogo"> 
+
+<div class="catalogo"> 
     <?php if (!empty($herramientas)): ?>
-        <?php foreach ($herramientas as $herramienta): ?>
+        <?php foreach ($herramientas as $index => $herramienta): ?>
             <div class="infobox">
                 <!-- Mostrar la imagen de la herramienta -->
                 <img class="imagen-herramienta" src="<?php echo $herramienta['imagenes']; ?>" alt="<?php echo $herramienta['nombreherramienta']; ?>">
@@ -180,31 +172,36 @@ document.addEventListener('click', function(event) {
                 <!-- Mostrar el nombre de la herramienta -->
                 <h1><?php echo $herramienta['nombreherramienta']; ?></h1>
                 
-				<h5><p><b>Marca:</b></p><?php echo $herramienta['marca_herramienta']; ?></h5>
+                <!-- Mostrar la marca -->
+                <h5><b>Marca:</b> <?php echo $herramienta['marca_herramienta']; ?></h5>
 
+                <!-- Botón "Ver más" -->
+                <div class="content-container">
+                    <button class="btn btn-secondary toggle-button" onclick="toggleContent(<?php echo $index; ?>)">
+                        Ver más
+                    </button>
 
-                <!-- Mostrar la descripción de la herramienta -->
-				 <p><b>Descripción:</b></p>
-                <p><?php echo $herramienta['descripcion']; ?></p>
-                
-                <!-- Mostrar los precios (hora, día, semana) -->
-                <p class="precio">Precio por hora: $<?php echo $herramienta['precio_hora']; ?></p>
-                <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
-                <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
-                
-                <!-- Formulario para alquilar -->
-                <form action="catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
-                    <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
-                    <button type="submit">Alquilar</button>
-                </form>
+                    <!-- Contenido adicional oculto -->
+                    <div class="hidden-content" id="extraContent-<?php echo $index; ?>">
+                        <p><b>Descripción:</b></p>
+                        <p><?php echo $herramienta['descripcion']; ?></p>
+                        
+                        <p class="precio">Precio por hora: $<?php echo $herramienta['precio_hora']; ?></p>
+                        <p class="precio">Precio por día: $<?php echo $herramienta['precio_dia']; ?></p>
+                        <p class="precio">Precio por semana: $<?php echo $herramienta['precio_semana']; ?></p>
+                        
+                        <form action="Catalogo.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>" method="POST">
+                            <input type="hidden" name="IDherramienta" value="<?php echo $herramienta['IDherramienta']; ?>">
+                            <button type="submit" class="btn btn-primary">Alquilar</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
         <p>No hay herramientas disponibles en este momento.</p>
     <?php endif; ?>
 </div>
-
-
 
 <br>
 
@@ -268,6 +265,25 @@ document.addEventListener('click', function(event) {
 			<script src="../js/bootstrap.js"></script>
 			<script src="../js/owl.carousel.js"></script>
 			<script src="../js/wow.min.js"></script>
+
+			<script> 
+			function toggleContent(index) {
+    		const content = document.getElementById(`extraContent-${index}`);
+    		const button = content.previousElementSibling;
+
+    		if (content.style.display === 'none' || content.style.display === '') {
+        	content.style.display = 'block'; // Muestra el contenido
+        	button.textContent = 'Ver menos'; // Cambia el texto del botón
+    		} else {
+        	content.style.display = 'none'; // Oculta el contenido
+        	button.textContent = 'Ver más'; // Cambia el texto del botón
+    		}
+			}
+			</script>
 			</body>
 
             </html>
+
+
+
+			

@@ -56,6 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
+
+
 ?>
 
 
@@ -129,6 +131,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="hora_reserva">Seleccionar hora:</label>
             <input type="time" id="hora_reserva" name="hora_reserva" required value="<?php echo $time ?>" readonly>
 
+            <label for="tipo_alquiler">Tipo de alquiler:</label>
+                <select id="tipo_alquiler" name="tipo_alquiler" onchange="calcularPrecio()" required>
+                    <option value="" disabled selected>Seleccione</option>
+                    <option value="hora">Por hora</option>
+                    <option value="dia">Por día</option>
+                    <option value="semana">Por semana</option>
+                </select>
+
+            <label for="cantidad">Cantidad (horas, días o semanas):</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" onchange="calcularPrecio()" required>
+
+            <p>Precio estimado: $<span id="precio_estimado">0.00</span></p>
+
+
             <!-- Campo oculto para IDherramienta -->
             <input type="hidden" name="IDherramienta" value="<?php echo $IDherramienta ?>">
 
@@ -176,6 +192,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		</div>
 	</footer>
 </div>
+
+<script>
+    const precios = {
+        hora: <?php echo $precio_hora; ?>,
+        dia: <?php echo $precio_dia; ?>,
+        semana: <?php echo $precio_semana; ?>
+    };
+
+    function calcularPrecio() {
+    const tipoAlquiler = document.getElementById("tipo_alquiler").value;
+    const cantidad = parseInt(document.getElementById("cantidad").value, 10);
+
+    if (!tipoAlquiler || !cantidad || cantidad <= 0) {
+        document.getElementById("precio_estimado").innerText = "0.00";
+        return;
+    }
+
+    // Calcular el precio basado en la selección
+    const precio = precios[tipoAlquiler] * cantidad;
+    document.getElementById("precio_estimado").innerText = precio.toFixed(2);
+}
+</script>
+
+
+
+
 </body>
 </html>
 

@@ -1,40 +1,67 @@
 <?php
-// Iniciar sesión
+// Iniciar la sesión
 session_start();
 
 // Incluir archivo de conexión
 include 'conexion.php';
 
-// Verificar si el usuario ha iniciado sesión (solo para mostrar el botón de login o username)
+// Inicializar variables para almacenar los datos del usuario y la herramienta
+$usuario = $nombre = $apellido = $email = $telefono = $provincia = $ciudad = $codigopostal = $dni = $descripcion = "";
+$IDherramienta = $nombreherramienta = $descripcionherramienta = $imagenes = $nombrepropietario = "";
+$precio_hora = $precio_dia = $precio_semana = "";
+
+// Verificar si el usuario ha iniciado sesión
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
+
+    // Recuperar los datos del usuario de la base de datos
+    $sql_usuario = "SELECT usuario, nombre, apellido, email, telefono, provincia, ciudad, codigopostal, dni, descripcion FROM usuarios WHERE usuario = ?";
+    $stmt_usuario = $conexion->prepare($sql_usuario);
+    $stmt_usuario->bind_param("s", $username);
+    $stmt_usuario->execute();
+    $stmt_usuario->bind_result($usuario, $nombre, $apellido, $email, $telefono, $provincia, $ciudad, $codigopostal, $dni, $descripcion);
+    $stmt_usuario->fetch();
+    $stmt_usuario->close();
 } else {
-    $username = "Log In/Sign Up";
-}
-
-// Inicializar variables
-$usuario = $nombre = $apellido = $email = $telefono = $provincia = $ciudad = $codigopostal = $dni = $descripcion = "";
-$ID = "";
-
-// Verificar si se recibe el ID del usuario a editar
-if (isset($_GET['ID'])) {
-    $ID = intval($_GET['ID']); // Convertir a entero para mayor seguridad
-
-    // Recuperar los datos del usuario con el ID proporcionado
-    $sql = "SELECT usuario, nombre, apellido, email, telefono, provincia, ciudad, codigopostal, dni, descripcion FROM usuarios WHERE ID = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $ID);
-    $stmt->execute();
-    $stmt->bind_result($usuario, $nombre, $apellido, $email, $telefono, $provincia, $ciudad, $codigopostal, $dni, $descripcion);
-    $stmt->fetch();
-    $stmt->close();
-} else {
-    echo "ID de usuario no proporcionado.";
+    // Si no ha iniciado sesión, redirigir a la página de login
+    header("Location: ../html/login.html");
     exit();
 }
 
+// Verificar si se recibió el IDherramienta desde el formulario
+if (isset($_GET['IDherramienta'])) {
+    $IDherramienta = $_GET['IDherramienta'];
+
+    // Recuperar los datos de la herramienta seleccionada
+    $sql_herramienta = "
+        SELECT h.nombreherramienta, h.descripcion, h.imagenes, h.precio_hora, h.precio_dia, h.precio_semana, u.nombre AS propietario
+        FROM herramientas h
+        INNER JOIN usuarios u ON h.IDusuario = u.ID
+        WHERE h.IDherramienta = ?";
+    $stmt_herramienta = $conexion->prepare($sql_herramienta);
+    $stmt_herramienta->bind_param("i", $IDherramienta);
+    $stmt_herramienta->execute();
+    $stmt_herramienta->bind_result(
+        $nombreherramienta,
+        $descripcionherramienta,
+        $imagenes,
+        $precio_hora,
+        $precio_dia,
+        $precio_semana,
+        $nombrepropietario
+    );
+    $stmt_herramienta->fetch();
+    $stmt_herramienta->close();
+} else {
+    echo "No se ha especificado una herramienta para editar.";
+    exit();
+}
+
+// Cerrar la conexión a la base de datos
 $conexion->close();
 ?>
+
+
 <!-- AQUI COMIENZA EL HEADER --> 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,98 +185,55 @@ document.addEventListener('click', function(event) {
         <hr>
         <br>
         <div class="centrarform">
-        <form action="actualizar_usuario.php" method="post" enctype="multipart/form-data">
-
-            <!-- Usuario -->
-            <div class="mb-3">
-                  <label for="usuario" class="form-label"><b>Usuario</b></label>
-                <input type="text" class="form-control" name="usuario" placeholder="Ingrese su Usuario" value="<?php echo htmlspecialchars($usuario); ?>">
-            </div>
-            <hr>
-
-            <!-- Nombre -->
-            <div class="mb-3">
-                 <label for="nombre" class="form-label"><b>Nombre</b></label>
-                <input type="text" class="form-control" name="nombre" placeholder="Ingrese su Nombre" value="<?php echo htmlspecialchars($nombre); ?>">
-            </div>
-            <hr>
-            <!-- Apellido -->
-            <div class="mb-3">
-                 <label for="apellido" class="form-label"><b>Apellido</b></label>
-                <input type="text" class="form-control" name="apellido" placeholder="Ingrese su Apellido" value="<?php echo htmlspecialchars($apellido); ?>">
-            </div>
-            <hr>
-
-            <!-- Email -->
-            <div class="mb-3">
-                <label for="email" class="form-label"><b>Email</b></label>
-              <input type="text" class="form-control" name="email" placeholder="Ingrese su Email" value="<?php echo htmlspecialchars($email); ?>">
-          </div>
-          <hr>
-
-          <!-- Descripcion -->
-          <div class="mb-3">
-            <label for="descripcion" class="form-label"><b>Descripcion</b></label>
-          <input type="text" class="form-control" name="descripcion" placeholder="Ingrese su Descripcion" value="<?php echo htmlspecialchars($descripcion); ?>">
-            </div>
-            <hr>
-
-            <!-- DNI -->
-            <div class="mb-3">
-            <label for="dni" class="form-label"><b>DNI</b></label>
-            <input type="number" class="form-control" name="dni" placeholder="Ingrese su DNI" value="<?php echo htmlspecialchars($dni); ?>">
-            </div>
-            <hr>
-
-            <!-- CP -->
-            <div class="mb-3">
-            <label for="cp" class="form-label"><b>Codigo Postal</b></label>
-            <input type="number" class="form-control" name="codigopostal" placeholder="Ingrese su Codigo Postal" value="<?php echo htmlspecialchars($codigopostal); ?>">
-            </div>
-            <hr>
-
-            <!-- Localidad -->
-            <div class="mb-3">
-                <label for="localidad" class="form-label"><b>Ciudad</b></label>
-                <input type="text" class="form-control" name="ciudad" placeholder="Ingrese su Ciudad" value="<?php echo htmlspecialchars($ciudad); ?>">
-            </div>
-            <hr>
-            <!-- Provincia -->
-            <div class="mb-3">
-                <label for="provincia" class="form-label"><b>Provincia</b></label>
-                <select class="form-select" name="provincia">
-                    <option selected>Seleccione su provincia</option>
-                    <option value="Buenos Aires">Buenos Aires</option>
-                    <option value="Córdoba">Córdoba</option>
-                    <option value="Santa Fe">Santa Fe</option>
-                    <option value="Mendoza">Mendoza</option>
-                    <option value="Tucumán">Tucumán</option>
-                    <option value="Tucumán">Formosa</option>
-                    <option value="Tucumán">Salta</option>
-                    <option value="Tucumán">Jujuy</option>
-                    <option value="Tucumán">La rioja</option>
-                    <!-- Puedes agregar más opciones según las provincias de tu país -->
-                </select>
-            </div>
-            <hr>
-
-            <!-- Número de Teléfono -->
-            <div class="mb-3">
-                <label for="telefono" class="form-label"><b>Número de Teléfono</b></label>
-                <input type="tel" class="form-control" name="telefono" placeholder="Ingrese su número de teléfono" value="<?php echo htmlspecialchars($telefono); ?>">
-            </div>
-            <hr>
-          
-
-    
-            <!-- Botón de Enviar -->
-             <br>
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </form>
-            </div>
-        </form>
+        <div class="container">
+    <h2 class="text-center">Editar Herramienta</h2>
+    <form action="actualizar_herramienta.php" method="POST" enctype="multipart/form-data">
+    <!-- Mostrar datos de la herramienta -->
+    <div class="form-group">
+        <label for="nombreherramienta">Nombre de la Herramienta:</label>
+        <input type="text" class="form-control" id="nombreherramienta" name="nombreherramienta" value="<?php echo htmlspecialchars($nombreherramienta); ?>" required>
     </div>
+    <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <textarea class="form-control" id="descripcion" name="descripcion" required><?php echo htmlspecialchars($descripcionherramienta); ?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="nombrepropietario">Nombre del Propietario:</label>
+        <input type="text" class="form-control" id="nombrepropietario" name="nombrepropietario" value="<?php echo htmlspecialchars($nombrepropietario); ?>" readonly>
+    </div>
+    <div class="form-group">
+        <label for="precio_hora">Precio por Hora:</label>
+        <input type="number" class="form-control" id="precio_hora" name="precio_hora" value="<?php echo htmlspecialchars($precio_hora); ?>" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="precio_dia">Precio por Día:</label>
+        <input type="number" class="form-control" id="precio_dia" name="precio_dia" value="<?php echo htmlspecialchars($precio_dia); ?>" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="precio_semana">Precio por Semana:</label>
+        <input type="number" class="form-control" id="precio_semana" name="precio_semana" value="<?php echo htmlspecialchars($precio_semana); ?>" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="imagenes">Imagen Actual:</label>
+        <div>
+            <img src="<?php echo htmlspecialchars($imagenes); ?>" alt="Imagen de la herramienta"  style="max-width: 200px; max-height: 150px; height: auto; width: auto;">
+        </div>
+        <label for="imagenes">Cambiar Imagen:</label>
+        <input type="file" class="form-control" id="imagenes" name="imagenes">
+    </div>
+
+    <!-- Campo oculto para pasar el IDherramienta y la imagen actual -->
+    <input type="hidden" name="IDherramienta" value="<?php echo htmlspecialchars($IDherramienta); ?>">
+    <input type="hidden" name="imagenes_actual" value="<?php echo htmlspecialchars($imagenes); ?>">
+
+    <!-- Botones de acción -->
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="ListadoHerramientas.php" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+</div>
+
 </div>
 
 </div>
@@ -268,9 +252,7 @@ document.addEventListener('click', function(event) {
                     <div class="column-1-3">
                         <h1>Prest-AR</h1>
                     </div>
-                    <div class="column-2-3">
-                       
-                    </div>
+              
                     <div class="column-3-3">
                         <div class="social-icons-footer">
                             <a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>

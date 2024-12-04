@@ -51,7 +51,7 @@ $conexion->close();
     <script>
         // Redirigir a editoruser.php después de 3 segundos
         setTimeout(function(){
-            window.location.href = 'index.php';
+            window.location.href = 'AdministrarPerfiles.php';
         }, 2000);
     </script>
 </head>
