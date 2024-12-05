@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $precio_hora = $_POST['precio_hora'];
     $precio_dia = $_POST['precio_dia'];
     $precio_semana = $_POST['precio_semana'];
-    $categoria = $_POST['categoria'];
+    $cantidad_herramienta = $_POST['cantidad_herramienta'];
     $descripcion = $_POST['descripcion'];
    
 
@@ -35,12 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagenes_guardadas = implode(",", $ruta_imagenes);
 
     // Insertar los datos en la base de datos
-    $sql = "INSERT INTO herramientas (IDusuario, nombreherramienta, marca_herramienta, tipo_herramienta, precio_hora, precio_dia, precio_semana, categoria, descripcion, imagenes) 
+    $sql = "INSERT INTO herramientas (IDusuario, nombreherramienta, marca_herramienta, tipo_herramienta, precio_hora, precio_dia, precio_semana, descripcion, imagenes, cantidad_herramienta) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Preparar la declaración SQL
     if ($stmt = $conexion->prepare($sql)) {
-        $stmt->bind_param("isssdddsss", $id_usuario, $nombre_herramienta, $marca_herramienta, $tipo_herramienta, $precio_hora, $precio_dia, $precio_semana, $categoria, $descripcion, $imagenes_guardadas);
+        $stmt->bind_param("isssdddssi", $id_usuario, $nombre_herramienta, $marca_herramienta, $tipo_herramienta, $precio_hora, $precio_dia, $precio_semana, $descripcion, $imagenes_guardadas, $cantidad_herramienta);
 
         // Verificar si la inserción fue exitosa
         if ($stmt->execute()) {

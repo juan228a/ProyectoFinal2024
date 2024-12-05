@@ -16,6 +16,7 @@ if (isset($_SESSION['username'])) {
     $preciohora = $_POST['precio_hora'];
     $preciodia = $_POST['precio_dia'];
     $preciosemana = $_POST['precio_semana'];
+    $cantidad_herramienta = $_POST['cantidad_herramienta'];
 
     // Definir directorio de destino para las imágenes
     $target_dir = "../img-herramientas/";
@@ -63,9 +64,9 @@ if (isset($_SESSION['username'])) {
     }
 
     // Actualizar los datos de la herramienta en la base de datos
-    $sql = "UPDATE herramientas SET nombreherramienta = ?, descripcion = ?, precio_hora = ?, precio_dia = ?, precio_semana = ?, imagenes = ? WHERE IDherramienta = ?";
+    $sql = "UPDATE herramientas SET nombreherramienta = ?, descripcion = ?, precio_hora = ?, precio_dia = ?, precio_semana = ?, cantidad_herramienta = ?,  imagenes = ? WHERE IDherramienta = ?";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("ssssssi", $nombreherramienta, $descripcionherramienta, $preciohora, $preciodia, $preciosemana, $imagenes, $IDherramienta);
+    $stmt->bind_param("sssssisi", $nombreherramienta, $descripcionherramienta, $preciohora, $preciodia, $preciosemana, $cantidad_herramienta, $imagenes, $IDherramienta);
 
     if ($stmt->execute()) {
         $mensaje = "Actualización exitosa.";

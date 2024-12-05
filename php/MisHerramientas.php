@@ -150,7 +150,7 @@ document.addEventListener('click', function(event) {
                     </div>
                     <div class="tool-name"><?php echo $herramienta['nombreherramienta']; ?></div>
                     <div class="tool-actions">
-                    <button class="edit-btn" onclick="window.location.href='editar_herramienta.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>'">Editar</button>
+                    <button class="edit-btn" onclick="window.location.href='EditarHerramienta.php?IDherramienta=<?php echo $herramienta['IDherramienta']; ?>'">Editar</button>
 
                         <button class="delete-btn" onclick="confirmDelete(<?php echo $herramienta['IDherramienta']; ?>)">Eliminar</button>
                     </div>

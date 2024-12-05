@@ -81,13 +81,10 @@ $conexion->close();
             </div>
 
             <div class="input-group">
-                <label for="categoria"><b>Categoría</b></label>
-                <select id="categoria" name="categoria" required>
-                    <option value="">Selecciona una categoría</option>
-                    <option value="electrodomesticos">Electrodomésticos</option>
-                    <option value="manuales">Manuales</option>                  
-                </select>
-            </div>
+                    <label for="cantidad_herramienta"><b>Stock(Cantidad)</b></label>
+                    <input type="number" id="cantidad_herramienta" name="cantidad_herramienta" placeholder="Cantidad de Herramientas" required>
+                </div>
+
 
             <div class="input-group">
                 <label for="descripcion"><b>Descripción</b></label>

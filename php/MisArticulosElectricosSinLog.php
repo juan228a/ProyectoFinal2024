@@ -120,7 +120,7 @@ $conexion->close();
 	 <div class="main-container">
     <div class="button-container">
    <div class="text-center">
-            <a href="MisArticulosElectricosSinLog.php"><button type="submit" class="btn btn-secondary custom-button">Electricas</button>
+            <a href="MisArticulosSinLog.php"><button type="submit" class="btn btn-secondary custom-button">Todas las herramientas</button>
 			</a></div>
         </div>
 		
@@ -146,7 +146,7 @@ $conexion->close();
                 <!-- Mostrar la marca -->
                 <h5><b>Marca:</b> <?php echo $herramienta['marca_herramienta']; ?></h5>
 
-				<h5><b>Cantidad Disponibles:</b> <?php echo $herramienta['cantidad_herramienta']; ?></h5>
+                <h5><b>Cantidad Disponibles:</b> <?php echo $herramienta['cantidad_herramienta']; ?></h5>
 
                 <!-- Botón "Ver más" -->
                 <div class="content-container">

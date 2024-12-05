@@ -20,12 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = $_POST['fecha_reserva'];
     $time = $_POST['hora_reserva'];
     $direccion = $_POST['direccion'];
-    $horas = $_POST['horas'];
     $experiencia = $_POST['experiencia'];
     $telefono = $_POST['telefono'];
     $email = $_POST['email'];
     $email_propietario = $_POST['propietario_email'];
     $nombre_herramienta = $_POST['nombre_herramienta'];
+    $tipo_de_alquiler = $_POST['tipo_de_alquiler'];
+    $cantidad_carrito = $_POST['cantidad_carrito'];
 
     // Recuperar el IDusuario desde la sesión
     $username = $_SESSION['username'];
@@ -38,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 
     // Insertar la reserva en el carrito
-    insertarEnCarrito($IDherramienta, $IDusuario, $nombre, $apellido, $email, $telefono, $direccion, $horas, $experiencia, $date, $time);
+    insertarEnCarrito($IDherramienta, $IDusuario, $nombre, $apellido, $email, $telefono, $direccion, $experiencia, $date, $time, $tipo_de_alquiler, $cantidad_carrito);
 
     // Enviar correo de confirmación
-    enviarCorreo($nombre, $apellido, $email, $email_propietario,$nombre_herramienta, $telefono, $direccion, $horas, $experiencia, $date, $time);
+    enviarCorreo($nombre, $apellido, $email, $email_propietario,$nombre_herramienta, $telefono, $direccion, $experiencia, $date, $time, $tipo_de_alquiler, $cantidad_carrito);
 
     // Redirigir al usuario a MisAlquileres.php después de completar el proceso
     header("Location: MisAlquileres.php");
@@ -53,13 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Función para insertar en el carrito
-function insertarEnCarrito($IDherramienta, $IDusuario, $nombre, $apellido, $email, $telefono, $direccion, $horas, $experiencia, $date, $time) {
+function insertarEnCarrito($IDherramienta, $IDusuario, $nombre, $apellido, $email, $telefono, $direccion, $experiencia, $date, $time, $tipo_de_alquiler, $cantidad_carrito) {
     global $conexion;
 
-    $sql = "INSERT INTO carrito (IDherramienta, IDusuario, nombre, apellido, email, telefono, direccion, horas, experiencia, fecha_reserva, hora_reserva, fecha_creacion) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+    $sql = "INSERT INTO carrito (IDherramienta, IDusuario, nombre, apellido, email, telefono, direccion, experiencia, fecha_reserva, hora_reserva, fecha_creacion, tipo_de_alquiler, cantidad_carrito) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("iisssssssss", $IDherramienta, $IDusuario, $nombre, $apellido, $email, $telefono, $direccion, $horas, $experiencia, $date, $time);
+    $stmt->bind_param("iisssssssssi", $IDherramienta, $IDusuario, $nombre, $apellido, $email, $telefono, $direccion, $experiencia, $date, $time, $tipo_de_alquiler, $cantidad_carrito);
 
     if (!$stmt->execute()) {
         echo "Error al insertar en la base de datos: " . $stmt->error;
@@ -68,7 +69,7 @@ function insertarEnCarrito($IDherramienta, $IDusuario, $nombre, $apellido, $emai
     $stmt->close();
 }
 
-function enviarCorreo($nombre, $apellido, $email, $email_propietario, $nombre_herramienta,$telefono, $direccion, $horas, $experiencia, $date, $time) {
+function enviarCorreo($nombre, $apellido, $email, $email_propietario, $nombre_herramienta,$telefono, $direccion, $experiencia, $date, $time, $tipo_de_alquiler, $cantidad_carrito) {
     $mail = new PHPMailer(true);
 
     try {
@@ -91,14 +92,14 @@ function enviarCorreo($nombre, $apellido, $email, $email_propietario, $nombre_he
         <body>
             <h2>Detalles de la Reserva</h2>
             <p><strong>Nombre:</strong> $nombre $apellido</p>
-            <p><strong>Herramienta alquilada:</strong> $nombre_herramienta$</p>
+            <p><strong>Herramienta alquilada:</strong> $nombre_herramienta</p>
             <p><strong>Teléfono:</strong> $telefono</p>
             <p><strong>Dirección:</strong> $direccion</p>
-            <p><strong>Horas:</strong> $horas</p>
             <p><strong>Experiencia:</strong> $experiencia</p>
             <p><strong>Fecha de Reserva:</strong> $date</p>
             <p><strong>Hora de Reserva:</strong> $time</p>
-            <p><strong>Herramienta alquilada:</strong> $nombre_herramienta$</p>
+            <p><strong>Tipo de alquiler</strong> $tipo_de_alquiler</p>
+            <p><strong>Cantidad (horas, días o semanas):</strong> $cantidad_carrito</p>
         </body>
         </html>
         ";
@@ -116,13 +117,14 @@ function enviarCorreo($nombre, $apellido, $email, $email_propietario, $nombre_he
             <h2>Notificación de Nueva Reserva</h2>
             <p>Se ha realizado una nueva reserva con los siguientes detalles:</p>
             <p><strong>Nombre:</strong> $nombre $apellido</p>
-            <p><strong>Herramienta alquilada:</strong> $nombre_herramienta$</p>
+            <p><strong>Herramienta alquilada:</strong> $nombre_herramienta</p>
             <p><strong>Teléfono:</strong> $telefono</p>
             <p><strong>Dirección:</strong> $direccion</p>
-            <p><strong>Horas:</strong> $horas</p>
             <p><strong>Experiencia:</strong> $experiencia</p>
             <p><strong>Fecha de Reserva:</strong> $date</p>
             <p><strong>Hora de Reserva:</strong> $time</p>
+             <p><strong>Tipo de alquiler:</strong> $tipo_de_alquiler</p>
+            <p><strong>Cantidad (horas, días o semanas):</strong> $cantidad_carrito</p>
         </body>
         </html>
         ";

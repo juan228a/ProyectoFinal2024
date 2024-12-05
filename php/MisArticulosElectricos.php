@@ -186,6 +186,8 @@ document.addEventListener('click', function(event) {
                 <!-- Mostrar la marca -->
                 <h5><b>Marca:</b> <?php echo $herramienta['marca_herramienta']; ?></h5>
 
+				<h5><b>Cantidad Disponibles:</b> <?php echo $herramienta['cantidad_herramienta']; ?></h5>
+
                 <!-- Botón "Ver más" -->
                 <div class="content-container">
                     <button class="btn btn-secondary toggle-button" onclick="toggleContent(<?php echo $index; ?>)">

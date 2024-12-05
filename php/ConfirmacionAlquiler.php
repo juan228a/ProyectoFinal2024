@@ -98,10 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required value="<?php echo $email ?>" readonly>
 
-            <label for="propietario_email">Email del propietario:</label>
+            <label for="propietario_email">Email del Propietario:</label>
             <input type="email" id="propietario_email" name="propietario_email" required value="<?php echo $propietario_email ?>" readonly>
 
-            <label for="nombre_herramienta">Nombre de la herramienta:</label>
+            <label for="nombre_herramienta">Nombre de la Herramienta:</label>
             <input type="text" id="nombre_herramienta" name="nombre_herramienta" required value="<?php echo $nombre_herramienta ?>" readonly>
 
             <label for="telefono">Teléfono:</label>
@@ -109,9 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="direccion">Dirección Hogar:</label>
             <input type="text" id="direccion" name="direccion" required>
-
-            <label for="horas">Horas a alquilar:</label>
-            <input type="number" id="horas" name="horas" required>
 
             <label for="experiencia">Experiencia con la herramienta:</label>
             <select  id="experiencia" name="experiencia" required>
@@ -131,19 +128,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="hora_reserva">Seleccionar hora:</label>
             <input type="time" id="hora_reserva" name="hora_reserva" required value="<?php echo $time ?>" readonly>
 
-            <label for="tipo_alquiler">Tipo de alquiler:</label>
-                <select id="tipo_alquiler" name="tipo_alquiler" onchange="calcularPrecio()" required>
+            <label for="tipo_de_alquiler">Tipo de alquiler:</label>
+                <select id="tipo_de_alquiler" name="tipo_de_alquiler" onchange="calcularPrecio()" required>
                     <option value="" disabled selected>Seleccione</option>
-                    <option value="hora">Por hora</option>
-                    <option value="dia">Por día</option>
-                    <option value="semana">Por semana</option>
+                    <option value="hora">Por Horas</option>
+                    <option value="dia">Por Día</option>
+                    <option value="semana">Por Semana</option>
                 </select>
 
-            <label for="cantidad">Cantidad (horas, días o semanas):</label>
-            <input type="number" id="cantidad" name="cantidad" min="1" onchange="calcularPrecio()" required>
+            <label for="cantidad_carrito">Cantidad (Horas, Días o Semanas):</label>
+            <input type="number" id="cantidad_carrito" name="cantidad_carrito" min="1" onchange="calcularPrecio()" required>
 
-            <p>Precio estimado: $<span id="precio_estimado">0.00</span></p>
-
+    
 
             <!-- Campo oculto para IDherramienta -->
             <input type="hidden" name="IDherramienta" value="<?php echo $IDherramienta ?>">
@@ -153,9 +149,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="submit-btn">Enviar Reserva</button>
         </form>
     </div>
-
-
-
 
 	<br><br><br><br>
 	<footer class="footer-outer">
@@ -169,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<nav class="footer-nav">
 						<ul>
 							<a href="index.php"><li>Inicio</li></a>
-							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
+							
 							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
 							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
 							
@@ -193,27 +186,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</footer>
 </div>
 
-<script>
-    const precios = {
-        hora: <?php echo $precio_hora; ?>,
-        dia: <?php echo $precio_dia; ?>,
-        semana: <?php echo $precio_semana; ?>
-    };
-
-    function calcularPrecio() {
-    const tipoAlquiler = document.getElementById("tipo_alquiler").value;
-    const cantidad = parseInt(document.getElementById("cantidad").value, 10);
-
-    if (!tipoAlquiler || !cantidad || cantidad <= 0) {
-        document.getElementById("precio_estimado").innerText = "0.00";
-        return;
-    }
-
-    // Calcular el precio basado en la selección
-    const precio = precios[tipoAlquiler] * cantidad;
-    document.getElementById("precio_estimado").innerText = precio.toFixed(2);
-}
-</script>
 
 
 

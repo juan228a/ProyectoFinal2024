@@ -415,12 +415,12 @@ document.addEventListener('click', function(event) {
         <h1><?php echo htmlspecialchars($herramienta['nombreherramienta']); ?></h1>
         <br><br>
         <div class="carousel-container">
-            <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+           
             <div class="image-container">
                 <img id="image-display" src="<?php echo htmlspecialchars($herramienta['imagenes']); ?>" 
                      alt="<?php echo htmlspecialchars($herramienta['nombreherramienta']); ?>">
             </div>
-            <a class="next" onclick="changeImage(1)">&#10095;</a>
+  
         </div>
         <br><br><br>
         <p><b>Descripción:</b> <?php echo htmlspecialchars($herramienta['descripcion']); ?></p>
@@ -432,7 +432,6 @@ document.addEventListener('click', function(event) {
         <p><b>Precio por Hora:</b> $<?php echo htmlspecialchars($herramienta['precio_hora']); ?></p>
         <p><b>Precio por Día:</b> $<?php echo htmlspecialchars($herramienta['precio_dia']); ?></p>
         <p><b>Precio por Semana:</b> $<?php echo htmlspecialchars($herramienta['precio_semana']); ?></p>
-        <p><b>Categoría:</b> <?php echo htmlspecialchars($herramienta['categoria']); ?></p>
         <br>
 
         <!-- Formulario para reservar -->

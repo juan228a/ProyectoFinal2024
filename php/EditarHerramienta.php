@@ -8,7 +8,7 @@ include 'conexion.php';
 // Inicializar variables para almacenar los datos del usuario y la herramienta
 $usuario = $nombre = $apellido = $email = $telefono = $provincia = $ciudad = $codigopostal = $dni = $descripcion = "";
 $IDherramienta = $nombreherramienta = $descripcionherramienta = $imagenes = $nombrepropietario = "";
-$precio_hora = $precio_dia = $precio_semana = "";
+$precio_hora = $precio_dia = $precio_semana = $cantidad_herramienta = "";
 
 // Verificar si el usuario ha iniciado sesión
 if (isset($_SESSION['username'])) {
@@ -34,7 +34,7 @@ if (isset($_GET['IDherramienta'])) {
 
     // Recuperar los datos de la herramienta seleccionada
     $sql_herramienta = "
-        SELECT h.nombreherramienta, h.descripcion, h.imagenes, h.precio_hora, h.precio_dia, h.precio_semana, u.nombre AS propietario
+        SELECT h.nombreherramienta, h.descripcion, h.imagenes, h.precio_hora, h.precio_dia, h.precio_semana, h.cantidad_herramienta, u.nombre AS propietario
         FROM herramientas h
         INNER JOIN usuarios u ON h.IDusuario = u.ID
         WHERE h.IDherramienta = ?";
@@ -48,6 +48,7 @@ if (isset($_GET['IDherramienta'])) {
         $precio_hora,
         $precio_dia,
         $precio_semana,
+        $cantidad_herramienta,
         $nombrepropietario
     );
     $stmt_herramienta->fetch();
@@ -181,12 +182,12 @@ document.addEventListener('click', function(event) {
     <br>
     <br>
     <div class="profile-container mx-auto">
-        <h2 class="text-center mb-4"><u>Editar perfil</u></h2>
+        <h2 class="text-center mb-4"><u>Editar Herramienta</u></h2>
         <hr>
         <br>
         <div class="centrarform">
         <div class="container">
-    <h2 class="text-center">Editar Herramienta</h2>
+    
     <form action="actualizar_herramienta.php" method="POST" enctype="multipart/form-data">
     <!-- Mostrar datos de la herramienta -->
     <div class="form-group">
@@ -213,6 +214,13 @@ document.addEventListener('click', function(event) {
         <label for="precio_semana">Precio por Semana:</label>
         <input type="number" class="form-control" id="precio_semana" name="precio_semana" value="<?php echo htmlspecialchars($precio_semana); ?>" step="0.01" required>
     </div>
+
+    <div class="input-group">
+                    <label for="cantidad_herramienta">Cantidad</label>
+                    <input type="number" id="cantidad_herramienta" name="cantidad_herramienta" value="<?php echo htmlspecialchars ($cantidad_herramienta); ?>" required>
+                </div>
+
+
     <div class="form-group">
         <label for="imagenes">Imagen Actual:</label>
         <div>
@@ -229,7 +237,7 @@ document.addEventListener('click', function(event) {
     <!-- Botones de acción -->
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        <a href="ListadoHerramientas.php" class="btn btn-secondary">Cancelar</a>
+        <a href="AdministrarHerramienta.php" class="btn btn-secondary">Cancelar</a>
     </div>
 </form>
 </div>
