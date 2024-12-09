@@ -210,7 +210,7 @@ document.addEventListener('click', function(event) {
 						<h1>¿Aún tienes dudas?</h1>
 						<p>Contacta con nosotros y te ayudaremos encantados.</p>
 						<br>
-						<button class="btn btn-md features-btn-first animated fadeInLeft wow"> <a class="boton_vinculo" href="../html/contacto.html">Contacto</a></button>
+						<button class="btn btn-md features-btn-first animated fadeInLeft wow"> <a class="boton_vinculo" href="contacto.php">Contacto</a></button>
 					</div>
 				</div>
 			</div>
@@ -234,8 +234,8 @@ document.addEventListener('click', function(event) {
 						<ul>
 							<a href="#" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
 							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+							<a href="terminosycondiciones.php" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+							<a href="privacidad.php" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
 							
 						</ul>
 					</nav>

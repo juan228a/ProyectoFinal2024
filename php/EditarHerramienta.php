@@ -121,7 +121,7 @@ $conexion->close();
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="index.php">Inicio <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
@@ -131,7 +131,7 @@ $conexion->close();
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
+        <li><a href="../php/MisHerramientas.php">Mis Herramientas</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
@@ -188,7 +188,7 @@ document.addEventListener('click', function(event) {
         <div class="centrarform">
         <div class="container">
     
-    <form action="actualizar_herramienta.php" method="POST" enctype="multipart/form-data">
+    <form action="actualizar_herramienta_admin.php" method="POST" enctype="multipart/form-data">
     <!-- Mostrar datos de la herramienta -->
     <div class="form-group">
         <label for="nombreherramienta">Nombre de la Herramienta:</label>
@@ -276,6 +276,10 @@ document.addEventListener('click', function(event) {
     
             </div>
         </footer>
-    
+    	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/owl.carousel.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/main.js"></script>
         </body>
         </html>

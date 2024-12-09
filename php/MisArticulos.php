@@ -65,7 +65,8 @@ $conexion->close();
 
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="../css/MisArticulos.css">
-
+	
+	
 </head>
 
 <body>
@@ -227,39 +228,44 @@ document.addEventListener('click', function(event) {
 			<br>
 			<br>
 			<br>
-			<footer class="footer-outer">
-				<div class="container footer-inner">
-		
-					<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
-						<div class="column-1-3">
-							<h1>Prest-AR</h1>
-						</div>
-						<div class="column-2-3">
-							<nav class="footer-nav">
-								<ul>
-									<a href="../index.html" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
-									<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-									<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-									<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
-									
-								</ul>
-							</nav>
-						</div>
-						<div class="column-3-3">
-							<div class="social-icons-footer">
-								<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-								<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-								<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-							</div>
-						</div>
-					</div>
-		
-					<span class="border-bottom-footer"></span>
-		
-					<p class="copyright">&copy; 2024 App. All rights reserved.</p>
-		
+			
+	<!-- ==========================================================================================================
+                                               SECTION 7 - SUB FOOTER
+    ========================================================================================================== -->
+
+	<footer class="footer-outer">
+		<div class="container footer-inner">
+
+			<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
+				<div class="column-1-3">
+					<h1>Prest-AR</h1>
 				</div>
-			</footer>
+				<div class="column-2-3">
+					<nav class="footer-nav">
+						<ul>
+							<a href="#" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
+							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
+							<a href="terminosycondiciones.php" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+							<a href="privacidad.php" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+							
+						</ul>
+					</nav>
+				</div>
+				<div class="column-3-3">
+					<div class="social-icons-footer">
+						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
+						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
+						<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
+					</div>
+				</div>
+			</div>
+
+			<span class="border-bottom-footer"></span>
+
+			<p class="copyright">&copy; 2024 Prest-AR. Todos los derechos reservados.</p>
+
+		</div>
+	</footer>
 
 			<script src="../js/mainjs.js"></script>
 			<script src="../js/main.js"></script>

@@ -151,7 +151,7 @@ document.addEventListener('click', function(event) {
         <hr>
         <br>
         <div class="centrarform">
-        <form action="actualizar_usuario.php" method="post" enctype="multipart/form-data">
+        <form action="actualizar_perfil.php" method="post" enctype="multipart/form-data">
 
             <!-- Usuario -->
             <div class="mb-3">
@@ -287,8 +287,8 @@ document.addEventListener('click', function(event) {
 						<ul>
 							<a href="index.php"><li>Inicio</li></a>
 							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+							<a href="terminosycondiciones" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+							<a href="privacidad" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
 							
 						</ul>
 					</nav>

@@ -98,7 +98,7 @@ if (isset($_SESSION['username'])) {
     <ul class="dropdown-menu">
         <li><a href="../php/editperfil.php">Editar Perfil</a></li>
         <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="../php/MisHerramientas.php">Mis Articulos</a></li>
+        <li><a href="../php/MisHerramientas.php">Mis Herramientas</a></li>
         <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
     </ul>
 </li>
@@ -158,15 +158,23 @@ document.addEventListener('click', function(event) {
             <?php endforeach; ?>
         </div>
 
-        <div class="modal" id="delete-modal" style="display: none;">
-            <div class="modal-content">
-                <p>¿Seguro que desea eliminar esta herramienta?</p>
-                <div class="modal-buttons">
-                    <button class="yes-btn" onclick="deleteTool()">Sí</button>
-                    <button class="no-btn" onclick="closeModal()">No</button>
-                </div>
-            </div>
+        <div id="tool-list">
+    <!-- Tus tarjetas de herramientas -->
+</div>
+
+<!-- Modal -->
+<div class="modal" id="delete-modal" style="display: none;">
+    <div class="modal-content">
+        <p>¿Seguro que desea eliminar esta herramienta?</p>
+        <div class="modal-buttons">
+            <button class="yes-btn" onclick="deleteTool()">Sí</button>
+            <button class="no-btn" onclick="closeModal()">No</button>
         </div>
+    </div>
+</div>
+
+
+
 
         <script>
             let toolToDelete = null;
@@ -217,8 +225,8 @@ document.addEventListener('click', function(event) {
 					<nav class="footer-nav">
 						<ul>
 							<li><a href="index.php">Inicio</a></li>
-							<li><a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;">Terminos Y Condiciones</a></li>
-							<li><a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;">Privacidad</a></li>
+							<li><a href="terminosycondiciones.php" onclick="$('#fh5co-reviews').goTo();return false;">Terminos Y Condiciones</a></li>
+							<li><a href="privacidad.php" onclick="$('#fh5co-reviews').goTo();return false;">Privacidad</a></li>
 							
 						</ul>
 					</nav>

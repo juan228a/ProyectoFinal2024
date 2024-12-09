@@ -43,91 +43,9 @@ $conexion->close();
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style -->
-	<link rel="stylesheet" href="../css/EditPerfil.css">
+	<link rel="stylesheet" href="../css/administradorUser.css">
 
-	<style>
-		/* Estilos específicos para las tarjetas de usuarios */
-		.user-card {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			background-color: #fff;
-			border: 1px solid #ddd;
-			border-radius: 8px;
-			padding: 15px;
-			margin: 10px 0;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-		}
 
-		.user-card img {
-			width: 120px;
-			height: auto;
-			border-radius: 8px;
-		}
-
-		.user-details {
-			flex: 1;
-			margin-left: 20px;
-		}
-
-		.user-details h5 {
-			font-size: 1.2em;
-			margin-bottom: 10px;
-		}
-
-		.user-details p {
-			margin: 5px 0;
-			color: #555;
-		}
-
-		.user-actions {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: flex-end;
-		}
-
-		.user-actions a, .user-actions button {
-			background-color: #3498db;
-			color: white;
-			text-decoration: none;
-			text-align: center;
-			padding: 10px 15px;
-			border: none;
-			border-radius: 5px;
-			margin-bottom: 5px;
-			cursor: pointer;
-			font-size: 1em;
-			transition: background-color 0.3s ease;
-		}
-
-		.user-actions a:hover, .user-actions button:hover {
-			background-color: #2980b9;
-		}
-
-		/* Ajustes para hacer el contenido responsivo */
-		@media (max-width: 768px) {
-			.user-card {
-				flex-direction: column;
-				text-align: center;
-			}
-
-			.user-card img {
-				max-width: 100px;
-				margin-bottom: 15px;
-			}
-
-			.user-details {
-				margin-left: 0;
-				padding: 0;
-			}
-
-			.user-actions {
-				align-items: center;
-				margin-top: 10px;
-			}
-		}
-	</style>
 </head>
 
 <body>
@@ -135,24 +53,28 @@ $conexion->close();
 
 	<!-- HEADER -->
 	<div id="fh5co-hero-wrapper">
-		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="#">Prest-AR</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
-					
-					<li class="nav-item">
-						<a class="nav-link" href="AdministrarHerramienta.php">Administrar Herramientas</a>
-					</li>
-					
-					<li>
-						<a class="nav-link" href="cerrarsesion.php">Cerrar sesión</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+	<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
+    <!-- Logo permanece igual -->
+    <a class="navbar-brand" href="#">Prest-AR</a>
+
+    <!-- Botón para el menú en dispositivos pequeños -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="AdministrarHerramienta.php">Administrar Herramientas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cerrarsesion.php">Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 	</div>
 
 	<!-- SECCIÓN DE ADMINISTRACIÓN DE USUARIOS -->
@@ -184,7 +106,8 @@ $conexion->close();
 
 
 	<!-- FOOTER -->
-	<br><br><br>
+	<br><br><br><br>
+	
 	<footer class="footer-outer">
 		<div class="container footer-inner">
 			<div class="footer-three-grid wow fadeIn animated" data-wow-delay="0.66s">
@@ -234,4 +157,9 @@ $conexion->close();
 	</script>
 </div>
 </body>
+<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/owl.carousel.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/main.js"></script>
 </html>

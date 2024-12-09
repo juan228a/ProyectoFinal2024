@@ -477,8 +477,8 @@ document.addEventListener('click', function(event) {
 								<ul>
 									<a href="../index.html" onclick="$('#fh5co-hero-wrapper').goTo();return false;"><li>Inicio</li></a>
 									<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-									<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
-									<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
+									<a href="terminosycondiciones.php" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
+									<a href="privacidad.php" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>
 									
 								</ul>
 							</nav>

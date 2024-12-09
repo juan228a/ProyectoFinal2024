@@ -83,89 +83,11 @@ if (isset($_SESSION['username'])) {
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style  -->
+	
 	<link rel="stylesheet" href="../css/EditPerfil.css">
+	<link rel="stylesheet" href="../css/misAlquileres.css">
 
-	<style>
-		/* Estilo específico para las herramientas alquiladas */
-		.alquiler-card {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			align-items: center;
-			background-color: #fff;
-			border: 1px solid #ddd;
-			border-radius: 8px;
-			padding: 15px;
-			margin: 10px 0;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-		}
-
-		.alquiler-card img {
-			width: 120px;
-			height: auto;
-			border-radius: 8px;
-		}
-
-		.alquiler-details {
-			flex: 1;
-			margin-left: 20px;
-			width: 100%;
-    margin-top: 10px;
-		}
-
-		.alquiler-details h5 {
-			font-size: 1.2em;
-			margin-bottom: 10px;
-		}
-
-		.alquiler-details p {
-			margin: 5px 0;
-			color: #555;
-		}
-
-		.alquiler-actions {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: flex-end;
-			width: 100%;
-    margin-top: 10px;
-		}
-
-		.alquiler-actions button {
-			background-color: #3498db;
-			color: white;
-			padding: 10px 15px;
-			border: none;
-			border-radius: 5px;
-			margin-bottom: 5px;
-			cursor: pointer;
-			font-size: 1em;
-			transition: background-color 0.3s ease;
-		}
-
-		.alquiler-actions button:hover {
-			background-color: #2980b9;
-		}
-
-
-		@media (min-width: 576px) {
-    .alquiler-details, .alquiler-actions {
-        width: auto;
-        margin-top: 0;
-    }
-
-	@media (max-width: 576px) {
-    .alquiler-card {
-        padding: 10px;
-    }
-
-    .alquiler-actions button {
-        font-size: 0.9em;
-        padding: 8px;
-    }
-}
-	</style>
+	
 </head>
 
 <body>
@@ -276,8 +198,8 @@ document.addEventListener('click', function(event) {
 							<ul>
 								<a href="index.php" ><li>Inicio</li></a>
 								<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
-								<a href="../html/terminos-y-condiciones.html" ><li>Terminos Y Condiciones</li></a>
-								<a href="../html/Privacidad.html"><li>Privacidad</li></a>
+								<a href="terminosycondiciones.php" ><li>Terminos Y Condiciones</li></a>
+								<a href="privacidad.php"><li>Privacidad</li></a>
 								
 							</ul>
 						</nav>

@@ -14,7 +14,8 @@ if (isset($_SESSION['username'])) {
 $sql_herramientas = "
     SELECT * 
     FROM herramientas 
-    WHERE IDherramienta NOT IN (
+	WHERE tipo_herramienta = 'Manual'
+    AND IDherramienta NOT IN (
         SELECT IDherramienta 
         FROM carrito
     )
@@ -210,7 +211,7 @@ $conexion->close();
 				<div class="column-2-3">
 					<nav class="footer-nav">
 						<ul>
-							<a href="index.php"><li>Inicio</li></a>
+							<a href="index.html"><li>Inicio</li></a>
 							<!-- <a href="#" onclick="$('#fh5co-features').goTo();return false;"><li>Features</li></a> -->
 							<a href="../html/terminos-y-condiciones.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Terminos Y Condiciones</li></a>
 							<a href="../html/Privacidad.html" onclick="$('#fh5co-reviews').goTo();return false;"><li>Privacidad</li></a>

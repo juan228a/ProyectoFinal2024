@@ -1,5 +1,3 @@
-/* AQUI ARRANCA EL CSS DEL HEADER */
-
 @import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800");
 
 * {
@@ -40,49 +38,59 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px; /* Espacio entre elementos */
+  gap: 10px; /* Espacio entre elementos */
 }
 
+/* Logo "Prest-AR" sin cambios */
 .main-navbar-nav .navbar-brand {
   font-size: 38px;
   letter-spacing: 4px;
   position: relative;
-  top: -5px;
   font-weight: 500;
- 
-}
-
-
-
-.main-navbar-nav {
   color: #fff !important;
- 
 }
-.main-navbar-nav li {
-  color: #fff;
-  opacity: .7;
+
+/* Menú de navegación - Desktop */
+.main-navbar-nav .navbar-nav {
+  align-items: center;
 }
-.main-navbar-nav .navbar-nav .nav-item a:hover {
+
+/* Menú de navegación */
+.main-navbar-nav .navbar-nav .nav-link {
+  margin: 0 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff !important;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.main-navbar-nav .navbar-nav .nav-link:hover {
   color: #234197 !important;
-  -webkit-transition: all .33s ease;
-  -moz-transition: all .33s ease;
-  -o-transition: all .33s ease;
-  -ms-transition: all .33s ease;
-  transition: all .33s ease;
 }
-.main-navbar-nav .active {
+
+/* Botón de menú para dispositivos móviles */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 2px;
+}
+
+/* Fondo del menú desplegable */
+.collapse {
+  background-color: #2e3149; /* Fondo oscuro para el menú desplegable */
+}
+
+/* Links del menú en dispositivos pequeños */
+.navbar-nav .nav-item .nav-link {
   color: #fff !important;
-  opacity: 1 !important;
+  text-align: center;
+  padding: 10px 0;
 }
-.main-navbar-nav a {
-  color: #fff !important;
-}
-.main-navbar-nav .nav-link {
-  opacity: 1 !important;
-  margin: 0 35px;
-  font-size: 14.5px;
-  font-weight: 500;
-}
+
 
 .social-icons-header i {
   margin: 15px;
@@ -98,132 +106,57 @@ html {
   transition: all .2s ease;
 }
 
+
 /* HASTA AQUI TERMINA EL HEADER */
-#tool-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px; /* Limita el ancho máximo del contenedor */
-  margin: 0 auto; /* Centra el contenedor en la pantalla */
+
+.centrarform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-  .tool-card {
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    width: 300px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    margin: 10px;
+
+.centered-content {
+    width: 90%; /* Usa el 90% del ancho de la pantalla */
+    max-width: 500px; /* Ancho máximo en pantallas grandes */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .tool-card img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-  }
-  
-  .tool-name {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  .tool-actions {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .tool-actions button {
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .edit-btn {
-    background-color: #4caf50;
-    color: white;
-  }
-  
-  .delete-btn {
-    background-color: #f44336;
-    color: white;
-  }
-  .modal {
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none; /* Por defecto oculto */
+    transition: all 0.3s ease; /* Transición para un efecto suave al cambiar tamaño */
 }
 
-/* Contenido del modal */
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  
-  /* Añade estas líneas para centrar */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+
+.input-group {
+  display: flex; /* Flexbox para un control sencillo */
+  flex-direction: column; /* Cambia la dirección a vertical */
+  gap: 5px; /* Espaciado entre el label y el input */
+  margin-bottom: 15px; /* Espaciado entre grupos de entrada */
 }
 
-/* Botones del modal */
-.modal-buttons {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
+
+
+.input-group input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Asegura que el campo ocupe todo el ancho disponible */
 }
 
-.modal-buttons button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.yes-btn {
-    background-color: #28a745; /* Verde */
-    color: white;
-}
 
-.no-btn {
-    background-color: #dc3545; /* Rojo */
-    color: white;
-}
 
-button:hover {
-    opacity: 0.9;
-}
 
-  /* ==========================================================================================================
-										SUB FOOTER
-   ========================================================================================================== */
-   .img-float-left {
-    float: left;
-    
-  }
-  
-  .img-float-right {
-    float: right;
-  }
-  
-  .footer-outer {
+
+
+
+.footer-outer {
     width: 100%;
     padding: 50px;
-    height: 250px;
+    height: 150px;
     background: #2e3149;
     overflow: hidden;
   }
@@ -258,7 +191,7 @@ button:hover {
     font-size: 38px;
     letter-spacing: 3px;
     position: relative;
-    top: -15px;
+    top: -5px;
     font-weight: 600;
     color: #fff;
   }
@@ -270,7 +203,7 @@ button:hover {
   .footer-outer .column-3-3 {
     width: 20%;
     float: left;
-    height: 50px;
+    height: 20px;
   }
   .footer-outer .column-3-3 a {
     color: #b5b5c8;
@@ -324,8 +257,9 @@ button:hover {
   .google-play-btn {
     margin-left: 10px;
   }
- 
-  /* ==========================================================================================================
+  
+
+/* ==========================================================================================================
                                        RESPONSIVE STYLING
   ========================================================================================================== */
   
@@ -336,6 +270,21 @@ button:hover {
     }
 
   }
+  
+  @media (min-width: 992px) {
+    .main-navbar-nav .navbar-nav {
+        flex-direction: row;
+        margin-right: 80px; /* Mueve los enlaces más hacia la izquierda */
+    }
+
+    .main-navbar-nav .navbar-nav .nav-link {
+        padding: 8px 15px;
+    }
+
+    .collapse {
+        background-color: transparent; /* Fondo transparente para pantallas grandes */
+    }
+}
 
   @media screen and (max-width: 993px) {
 
@@ -390,48 +339,101 @@ button:hover {
       margin-top: 100px;
     }
   }
+  @media (max-width: 768px) {
+			.user-card {
+				flex-direction: column;
+				text-align: center;
+			}
 
-  @media screen and (max-width: 768px) {
-    .tool-card {
-      width: 100%; /* Full width for small screens */
-      max-width: 100%; /* Ensures full width */
-    }
-  
-    .tool-actions {
-      flex-direction: column; /* Stack buttons vertically on small screens */
-      align-items: center;
-    }
-  
-    .tool-actions button {
-      width: 100%; /* Make buttons take full width on small screens */
-      margin: 5px 0;
-    }
-  }
+			.user-card img {
+				max-width: 100px;
+				margin-bottom: 15px;
+			}
 
-  @media (max-width: 600px) {
-    .modal-content {
-        width: 80%;  /* Aumenta el ancho en pantallas pequeñas */
-        max-width: 300px; /* Asegura que el modal no sea demasiado grande */
-    }
-}
-  
+			.user-details {
+				margin-left: 0;
+				padding: 0;
+			}
 
-@media (max-width: 400px) {
-  .modal-content {
-      width: 95%;
-      max-width: 250px;
-  }
-}
-  @media screen and (max-width: 480px) {
+			.user-actions {
+				align-items: center;
+				margin-top: 10px;
+			}
+		}
+
  
-  
-    .tool-card img {
-      width: 80px; /* Reduce image size on smaller screens */
-      height: 80px;
-    }
-  }
 
-   footer ul{
 
-    margin-top: -17px;
-  } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Estilos específicos para las tarjetas de usuarios */
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-card img {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.user-details {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.user-details h5 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.user-details p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.user-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.user-actions a, .user-actions button {
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.user-actions a:hover, .user-actions button:hover {
+  background-color: #2980b9;
+}

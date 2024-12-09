@@ -97,7 +97,7 @@ $conexion->close();
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="../css/EditPerfil.css">
+	<link rel="stylesheet" href="../css/administradorUser.css">
 
 </head>
 
@@ -113,35 +113,26 @@ $conexion->close();
 	
 		<div id="fh5co-hero-wrapper">
 		<nav class="container navbar navbar-expand-lg main-navbar-nav navbar-light">
-			<a class="navbar-brand" href="">Prest-AR</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+    <!-- Logo permanece igual -->
+    <a class="navbar-brand" href="#">Prest-AR</a>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav nav-items-center ml-auto mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="add_herramienta.php" onclick="$('#fh5co-features').goTo();return false;">Subir Herramienta<span class="sr-only">(current)</span></a>
-					</li>
-                        <li class="nav-item dropdown">
-    <a class="nav-link" href="#" id="dropdownMenu" onclick="toggleDropdown(); return false;"><?php echo $username; ?></a>
-    <ul class="dropdown-menu">
-        <li><a href="../php/editperfil.php">Editar Perfil</a></li>
-        <li><a href="../php/MisAlquileres.php">Mis Alquileres</a></li>
-        <li><a href="../php/misarticulos.php">Mis Articulos</a></li>
-        <li><a href="../php/cerrarsesion.php">Cerrar sesión</a></li>
-    </ul>
-</li>
-					<div class="social-icons-header">
-						<a href="https://www.facebook.com/fh5co"><i class="fab fa-facebook-f"></i></a>
-						<a href="https://freehtml5.co"><i class="fab fa-instagram"></i></a>
-						<a href="https://www.twitter.com/fh5co"><i class="fab fa-twitter"></i></a>
-					</div>
-				</div>
-			</nav>
+    <!-- Botón para el menú en dispositivos pequeños -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="AdministrarPerfiles.php">Administrar Herramienta</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cerrarsesion.php">Cerrar sesión</a>
+            </li>
+        </ul>
+    </div>
+</nav>
             <script>
         function toggleDropdown() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
@@ -218,7 +209,7 @@ document.addEventListener('click', function(event) {
     <div class="input-group">
                     <label for="cantidad_herramienta">Cantidad</label>
                     <input type="number" id="cantidad_herramienta" name="cantidad_herramienta" value="<?php echo htmlspecialchars ($cantidad_herramienta); ?>" required>
-                </div>
+    </div>
 
 
     <div class="form-group">
@@ -278,4 +269,11 @@ document.addEventListener('click', function(event) {
         </footer>
     
         </body>
+
+        <script src="../js/jquery.min.js"></script>
+			<script src="../js/bootstrap.js"></script>
+			<script src="../js/owl.carousel.js"></script>
+			<script src="../js/wow.min.js"></script>
+			<script src="../js/main.js"></script>
+
         </html>
