@@ -46,6 +46,6 @@ Además, cuenta con un **panel de administración** desde donde un admin puede v
 
 ---
 
-## 📷 Captura de pantalla (opcional)
+📚 Créditos
 
-> Podés insertar una imagen aquí si querés:
+Este proyecto fue desarrollado como trabajo final integrador para la carrera de Técnico en Calidad y Desarrollo de Software (2024).
